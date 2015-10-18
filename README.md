@@ -21,8 +21,12 @@ function Item({title, description}) {
 
 ```javascript
 function ItemsList({items = []}) {
-	return items.map(({title, description}) =>
-		<Item title={title} description={description} />
+	return (
+		<section>
+			{items.map(({title, description}) =>
+				<Item title={title} description={description} />
+			)}
+		</section>
 	);
 }
 ```
