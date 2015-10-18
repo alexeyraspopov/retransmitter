@@ -21,14 +21,21 @@ function Item({title, description}) {
 
 ```javascript
 function ItemsList({items = []}) {
-	return items.map(({title, description}) => <Item title={title} description={description} />);
+	return items.map(({title, description}) =>
+		<Item title={title} description={description} />
+	);
 }
 ```
 
 ```javascript
 ItemsListContainer = Container(ItemsList, {
 	items() {
-		return fetch('/items');
+		return fetch('/items')
+			.then(r => r.json());
 	}
-})
+});
+```
+
+```javascript
+ReactDOM.render(<ItemsListContainer />, ...);
 ```
