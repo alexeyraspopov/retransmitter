@@ -1,6 +1,6 @@
 # Container
 
-Async declarative component-based (and other buzzwords) programming made easy.
+Async declarative (interactive) component-based (and other buzzwords) programming made easy.
 
 ## Intro
 
