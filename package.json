@@ -1,0 +1,28 @@
+{
+  "name": "container",
+  "version": "0.0.1",
+  "description": "React Container",
+  "main": "bundle.js",
+  "scripts": {
+    "prepublish": "browserify -r ./index.js -x react -s Container -t babelify -o bundle.js"
+  },
+  "repository": "alexeyraspopov/container",
+  "keywords": [
+    "react",
+    "container",
+    "stateful"
+  ],
+  "author": "Alexey Raspopov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexeyraspopov/container/issues"
+  },
+  "homepage": "https://github.com/alexeyraspopov/container#readme",
+  "peerDependencies": {
+    "react": "0.14.x"
+  },
+  "devDependencies": {
+    "babelify": "~6.3.0",
+    "browserify": "~11.2.0"
+  }
+}
