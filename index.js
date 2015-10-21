@@ -30,9 +30,7 @@ export default function Container(Component, options) {
 				.map(key => fragments[key](variables).then(data => ({[key]: data})));
 
 			Promise.all(promises).then(fetchedFragments => {
-				const state = fetchedFragments.reduce((acc, fetchedFragment) =>
-					assign(acc, fetchedFragment)
-				, {});
+				const state = fetchedFragments.reduce(binary(assign), {});
 
 				this.setState(state);
 			});
@@ -54,4 +52,8 @@ export default function Container(Component, options) {
 			return <Component children={children} />;
 		}
 	});
+}
+
+function binary(fn) {
+	return (a, b) => fn(a, b);
 }
