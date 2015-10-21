@@ -8,13 +8,20 @@ export default function Container(Component, options) {
 	// Promise :: { then }
 	// Observer :: { subscribe -> unsubscribe }
 	// Subscription :: { getState, subscribe -> { dispose } }
-	const {fragments, shouldContainerUpdate} = options;
+	const {
+		fragments = {},
+		shouldContainerUpdate = () => true,
+		initialVariables = {}
+	} = options;
+
+	const componentPropTypes = Component.propTypes || {};
 
 	return React.createClass({
 		displayName: `${Component.displayName || Component.name}Container`,
 
 		propTypes: {
-			variables: PropTypes.object
+			variables: PropTypes.object,
+			...componentPropTypes
 		},
 
 		componentWillMount() {
