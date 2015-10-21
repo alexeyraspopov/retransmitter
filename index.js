@@ -21,6 +21,7 @@ export default function Container(Component, options) {
 
 		propTypes: {
 			variables: PropTypes.object,
+			// TODO: should it be here? the validation can be done when container will pass props to component
 			...componentPropTypes
 		},
 
