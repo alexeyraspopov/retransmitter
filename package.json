@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/alexeyraspopov/container#readme",
   "peerDependencies": {
-    "object-assign": "~4.0.1",
+    "object-assign": "*",
     "react": "0.14.x"
   },
   "devDependencies": {
