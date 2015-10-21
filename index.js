@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import assign from 'object-assign';
 
 export default function Container(Component, options) {
@@ -7,11 +7,15 @@ export default function Container(Component, options) {
 	// fragments can return Promise, Observer, Subscription
 	// Promise :: { then }
 	// Observer :: { subscribe -> unsubscribe }
-	// Subscription :: { subscribe -> { dispose } }
+	// Subscription :: { getState, subscribe -> { dispose } }
 	const {fragments, shouldContainerUpdate} = options;
 
 	return React.createClass({
 		displayName: `${Component.displayName || Component.name}Container`,
+
+		propTypes: {
+			variables: PropTypes.object
+		},
 
 		componentWillMount() {
 			const variables = assign({}, initialVariables, this.props.variables);
