@@ -9,7 +9,7 @@ export default function Container(Component, options) {
 	const {
 		fragments = {},
 		shouldContainerUpdate = () => true,
-		initialVariables = {}
+		initialVariables = {},
 	} = options;
 
 	const componentPropTypes = Component.propTypes || {};
@@ -19,8 +19,6 @@ export default function Container(Component, options) {
 
 		propTypes: {
 			variables: PropTypes.object,
-			// TODO: should it be here? the validation can be done when container will pass props to component
-			...componentPropTypes
 		},
 
 		componentWillMount() {
@@ -50,7 +48,7 @@ export default function Container(Component, options) {
 			const {children} = this.props;
 			// TODO: pass other props
 			return <Component children={children} />;
-		}
+		},
 	});
 }
 
