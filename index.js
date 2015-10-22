@@ -45,10 +45,7 @@ export default function Container(Component, options) {
 		},
 
 		render() {
-			const {children} = this.props;
-			const {fragments} = this.state;
-			// TODO: pass other props
-			return <Component children={children} {...fragments} />;
+			return React.createElement(Component, assign({}, this.state.fragments, this.props));
 		},
 	});
 }
