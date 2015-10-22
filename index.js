@@ -12,8 +12,6 @@ export default function Container(Component, options) {
 		initialVariables = {},
 	} = options;
 
-	const componentPropTypes = Component.propTypes || {};
-
 	return React.createClass({
 		displayName: `${Component.displayName || Component.name}Container`,
 
@@ -22,13 +20,13 @@ export default function Container(Component, options) {
 		},
 
 		componentWillMount() {
-			const variables = assign({}, initialVariables, this.props.variables);
+			const variables = assign(Object.create(null), initialVariables, this.props.variables);
 
 			const promises = Object.keys(fragments)
 				.map(key => fragments[key](variables).then(data => ({[key]: data})));
 
 			Promise.all(promises).then(fetchedFragments => {
-				const state = fetchedFragments.reduce(binary(assign), {});
+				const state = fetchedFragments.reduce(binary(assign), Object.create(null));
 
 				this.setState({fragments: state});
 			});
@@ -45,7 +43,7 @@ export default function Container(Component, options) {
 		},
 
 		render() {
-			return React.createElement(Component, assign({}, this.state.fragments, this.props));
+			return React.createElement(Component, assign(Object.create(null), this.state.fragments, this.props));
 		},
 	});
 }
