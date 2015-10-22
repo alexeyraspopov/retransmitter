@@ -30,7 +30,7 @@ export default function Container(Component, options) {
 			Promise.all(promises).then(fetchedFragments => {
 				const state = fetchedFragments.reduce(binary(assign), {});
 
-				this.setState(state);
+				this.setState({fragments: state});
 			});
 		},
 
@@ -46,8 +46,9 @@ export default function Container(Component, options) {
 
 		render() {
 			const {children} = this.props;
+			const {fragments} = this.state;
 			// TODO: pass other props
-			return <Component children={children} />;
+			return <Component children={children} {...fragments} />;
 		},
 	});
 }
