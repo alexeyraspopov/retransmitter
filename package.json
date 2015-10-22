@@ -4,6 +4,7 @@
   "description": "React Container",
   "main": "bundle.js",
   "scripts": {
+    "test": "mocha --compilers js:babel/register tests.js",
     "prepublish": "babel index.js > bundle.js"
   },
   "repository": "alexeyraspopov/container",
@@ -23,6 +24,7 @@
     "react": "0.14.x"
   },
   "devDependencies": {
-    "babel": "~5.8.23"
+    "babel": "~5.8.23",
+    "mocha": "~2.3.3"
   }
 }
