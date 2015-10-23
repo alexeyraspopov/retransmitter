@@ -3,6 +3,7 @@ import assign from 'object-assign';
 
 export default function Container(Component, options) {
 	// fragments can return Promise, Observer, Subscription
+	// Component :: ReactClass | { pending, success, failure }
 	// Promise :: { then }
 	// Observer :: { subscribe -> unsubscribe }
 	// Subscription :: { getState, subscribe -> { dispose } }
