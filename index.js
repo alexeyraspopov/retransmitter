@@ -57,13 +57,20 @@ function binary(fn) {
 }
 
 function enumerate(target) {
-	const isEnumerableComponent = typeof target === 'object' && isReactComponentEnum(target);
+	const isEnumerableComponent = typeof target === 'object';
 
-	invariant(!isEnumerableComponent, 'Success, Failure and Pending should be React components');
+	invariant(!isEnumerableComponent || isReactComponentEnum(target), 'Success, Failure and Pending should be React components');
+	invariant(!isEnumerableComponent || hasSuccessPoint(target), 'At least Success should be specified');
 
 	return isEnumerableComponent ? target : { success: target };
 }
 
 function isReactComponentEnum(target) {
-	return ['success', 'failure', 'pending'].every(type => target.hasOwnProperty(type) && target[type].isReactComponent);
+	return ['success', 'failure', 'pending']
+		.filter(type => target.hasOwnProperty(type))
+		.every(type => typeof target[type] === 'function');
+}
+
+function hasSuccessPoint(target) {
+	return typeof target.success === 'function';
 }

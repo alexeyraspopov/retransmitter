@@ -12,4 +12,10 @@ describe('Container', () => {
 		assert.ok(React.isValidElement(<PContainer />), 'Container should be a React component');
 		assert.equal(PContainer.displayName, 'ComponentContainer', 'Container should have Component\'s name with suffix');
 	});
+
+	it('should create React component if enum is used', () => {
+		const PContainer = Container({success: Component}, {});
+		assert.ok(React.isValidElement(<PContainer />), 'Container should be a React component');
+		assert.equal(PContainer.displayName, 'ComponentContainer', 'Container should have Component\'s name with suffix');
+	});
 });
