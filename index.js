@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import assign from 'object-assign';
+import invariant from 'invariant';
 
 export default function Container(Component, options) {
 	// fragments can return Promise, Observer, Subscription
@@ -13,8 +14,10 @@ export default function Container(Component, options) {
 		initialVariables = {},
 	} = options;
 
+	const componentEnum = enumerate(Component);
+
 	return React.createClass({
-		displayName: `${Component.displayName || Component.name}Container`,
+		displayName: `${componentEnum.success.displayName || componentEnum.success.name}Container`,
 
 		propTypes: {
 			variables: PropTypes.object,
@@ -44,11 +47,23 @@ export default function Container(Component, options) {
 		},
 
 		render() {
-			return React.createElement(Component, assign(Object.create(null), this.state.fragments, this.props));
+			return React.createElement(componentEnum.success, assign(Object.create(null), this.state.fragments, this.props));
 		},
 	});
 }
 
 function binary(fn) {
 	return (a, b) => fn(a, b);
+}
+
+function enumerate(target) {
+	const isEnumerableComponent = typeof target === 'object' && isReactComponentEnum(target);
+
+	invariant(!isEnumerableComponent, 'Success, Failure and Pending should be React components');
+
+	return isEnumerableComponent ? target : { success: target };
+}
+
+function isReactComponentEnum(target) {
+	return ['success', 'failure', 'pending'].every(type => target.hasOwnProperty(type) && target[type].isReactComponent);
 }

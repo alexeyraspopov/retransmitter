@@ -21,6 +21,7 @@
   "homepage": "https://github.com/alexeyraspopov/container#readme",
   "peerDependencies": {
     "object-assign": "*",
+    "invariant": "~2.1.1",
     "react": "0.14.x"
   },
   "devDependencies": {
