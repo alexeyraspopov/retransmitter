@@ -41,9 +41,9 @@ export default function Container(Component, options) {
 					status: 'success',
 					fragments: results.reduce(binary(assign), Object.create(null)),
 				}),
-				errors => this.setState({
+				error => this.setState({
 					status: 'failure',
-					fragments: errors.reduce(binary(assign), Object.create(null)),
+					error,
 				})
 			);
 		},
@@ -59,9 +59,18 @@ export default function Container(Component, options) {
 		},
 
 		render() {
-			var {fragments, status} = this.state;
+			var {fragments, error, status} = this.state;
 
-			return React.createElement(componentEnum[status], assign(Object.create(null), fragments, this.props));
+			switch (status) {
+			case 'success':
+				return React.createElement(componentEnum.success, assign(Object.create(null), fragments, this.props));
+			case 'failure':
+				return React.createElement(componentEnum.failure, assign(Object.create(null), {error}, this.props));
+			case 'pending':
+				// falls through
+			default:
+				return React.createElement(componentEnum.pending, this.props);
+			}
 		},
 	});
 }
