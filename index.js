@@ -26,7 +26,8 @@ export default function Container(Component, options) {
 		getInitialState() {
 			return {
 				status: 'pending',
-				fragments: {}
+				fragments: {},
+				error: null,
 			};
 		},
 
