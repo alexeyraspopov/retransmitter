@@ -48,6 +48,11 @@ export default function Container(Component, options) {
 			);
 		},
 
+		refetch() {
+			this.setState({status: 'pending'});
+			this.fetch(this.props.variables);
+		},
+
 		componentWillMount() {
 			this.fetch(this.props.variables);
 		},
@@ -65,7 +70,7 @@ export default function Container(Component, options) {
 
 		render() {
 			const {fragments, error, status} = this.state;
-			const onRetry = () => this.componentWillMount();
+			const onRetry = () => this.refetch();
 
 			switch (status) {
 			case 'success':
