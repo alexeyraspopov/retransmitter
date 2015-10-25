@@ -30,8 +30,8 @@ export default function Container(Component, options) {
 			};
 		},
 
-		componentWillMount() {
-			const variables = assign(Object.create(null), initialVariables, this.props.variables);
+		fetch(newVariables) {
+			const variables = assign(Object.create(null), initialVariables, newVariables);
 
 			const promises = Object.keys(fragments)
 				.map(key => fragments[key](variables).then(data => ({[key]: data})));
@@ -48,13 +48,17 @@ export default function Container(Component, options) {
 			);
 		},
 
+		componentWillMount() {
+			this.fetch(this.props.variables);
+		},
+
 		componentWillUnmount() {
 			// dispose
 		},
 
 		componentWillReceiveProps(nextProps) {
 			if (shouldContainerUpdate.call(this, nextProps)) {
-				// update
+				this.fetch(nextProps.variables);
 			}
 		},
 
