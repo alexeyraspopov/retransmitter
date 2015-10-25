@@ -33,11 +33,16 @@ export default function Container(Component, options) {
 			const promises = Object.keys(fragments)
 				.map(key => fragments[key](variables).then(data => ({[key]: data})));
 
-			Promise.all(promises).then(fetchedFragments => {
-				const state = fetchedFragments.reduce(binary(assign), Object.create(null));
-
-				this.setState({fragments: state, status: 'success'});
-			});
+			Promise.all(promises).then(
+				results => this.setState({
+					status: 'success',
+					fragments: results.reduce(binary(assign), Object.create(null)),
+				}),
+				errors => this.setState({
+					status: 'failure',
+					fragments: errors.reduce(binary(assign), Object.create(null)),
+				})
+			);
 		},
 
 		componentWillUnmount() {
