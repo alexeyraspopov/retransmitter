@@ -58,6 +58,7 @@ export default function Container(Component, options) {
 
 		componentWillReceiveProps(nextProps) {
 			if (shouldContainerUpdate.call(this, nextProps)) {
+				this.setState({status: 'pending'});
 				this.fetch(nextProps.variables);
 			}
 		},
