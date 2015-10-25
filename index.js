@@ -65,6 +65,7 @@ export default function Container(Component, options) {
 			case 'success':
 				return React.createElement(componentEnum.success, assign(Object.create(null), fragments, this.props));
 			case 'failure':
+				// TODO: add `onRetry`
 				return React.createElement(componentEnum.failure, assign(Object.create(null), {error}, this.props));
 			case 'pending':
 				// falls through
