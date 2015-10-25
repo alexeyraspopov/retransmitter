@@ -24,7 +24,10 @@ export default function Container(Component, options) {
 		},
 
 		getInitialState() {
-			return {status: 'pending'};
+			return {
+				status: 'pending',
+				fragments: {}
+			};
 		},
 
 		componentWillMount() {
