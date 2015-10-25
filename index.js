@@ -54,11 +54,12 @@ export default function Container(Component, options) {
 		},
 
 		componentWillMount() {
+			this.disposables = [];
 			this.fetch(this.props.variables);
 		},
 
 		componentWillUnmount() {
-			// dispose
+			this.disposables.forEach(fn => fn());
 		},
 
 		componentWillReceiveProps(nextProps) {
