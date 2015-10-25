@@ -23,6 +23,10 @@ export default function Container(Component, options) {
 			variables: PropTypes.object,
 		},
 
+		getInitialState() {
+			return {status: 'pending'};
+		},
+
 		componentWillMount() {
 			const variables = assign(Object.create(null), initialVariables, this.props.variables);
 
@@ -32,7 +36,7 @@ export default function Container(Component, options) {
 			Promise.all(promises).then(fetchedFragments => {
 				const state = fetchedFragments.reduce(binary(assign), Object.create(null));
 
-				this.setState({fragments: state});
+				this.setState({fragments: state, status: 'success'});
 			});
 		},
 
@@ -47,7 +51,9 @@ export default function Container(Component, options) {
 		},
 
 		render() {
-			return React.createElement(componentEnum.success, assign(Object.create(null), this.state.fragments, this.props));
+			var {fragments, status} = this.state;
+
+			return React.createElement(componentEnum[status], assign(Object.create(null), fragments, this.props));
 		},
 	});
 }
@@ -60,7 +66,7 @@ function enumerate(target) {
 	const isEnumerableComponent = typeof target === 'object';
 
 	invariant(!isEnumerableComponent || isReactComponentEnum(target), 'Success, Failure and Pending should be React components');
-	invariant(!isEnumerableComponent || hasSuccessPoint(target), 'At least Success should be specified');
+	invariant(!isEnumerableComponent || hasSuccessPoint(target), 'At least Success component should be specified');
 
 	return isEnumerableComponent ? target : { success: target };
 }
