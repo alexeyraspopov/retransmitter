@@ -64,14 +64,14 @@ export default function Container(Component, options) {
 		},
 
 		render() {
-			var {fragments, error, status} = this.state;
+			const {fragments, error, status} = this.state;
+			const onRetry = () => this.componentWillMount();
 
 			switch (status) {
 			case 'success':
 				return React.createElement(componentEnum.success, assign(Object.create(null), fragments, this.props));
 			case 'failure':
-				// TODO: add `onRetry`
-				return React.createElement(componentEnum.failure, assign(Object.create(null), {error}, this.props));
+				return React.createElement(componentEnum.failure, assign(Object.create(null), {error, onRetry}, this.props));
 			case 'pending':
 				// falls through
 			default:
