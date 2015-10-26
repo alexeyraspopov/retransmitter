@@ -1,10 +1,10 @@
 # Container
 
-Async declarative (interactive) component-based (and other buzzwords) programming made easy.
+Async declarative component-based (and other buzzwords) programming made easy.
 
 ## Intro
 
-TBD
+*Here should be an explanation of princile "from the bottom to the top".*
 
 ## Examples
 
