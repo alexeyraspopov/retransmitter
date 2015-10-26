@@ -43,3 +43,30 @@ ItemsListContainer = Container(ItemsList, {
 ```javascript
 ReactDOM.render(<ItemsListContainer />, ...);
 ```
+
+## Multiple choise component
+
+```javascript
+ItemsListContainer = Container({
+	pending: LoadingSpinner,
+	success: ItemsList,
+	failure: ItemsListError
+}, {
+	items() {
+		return fetch('/items')
+			.then(r => r.json());
+	}
+});
+```
+
+When `<ItemsListContainer />` is added to the view `pending` element will be rendered at first. After loading is finished `success` or `failure` element will be rendered (depends on results). `failure` element will receive next props:
+
+ * `error` — the error instance that will be received in failed getter
+ * `onRetry` — the callback that can be attached as event hook and will restart data fetching
+
+## Support
+
+ * Promises
+ * Observables (instances should have `subscribe()` that may return `{ dispose() }`)
+ * Stores (instances should have `subscribe()` and `getState()`)
+ * CSP channels
