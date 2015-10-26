@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import {Observable} from 'rx';
 import assign from 'object-assign';
 import invariant from 'invariant';
 
