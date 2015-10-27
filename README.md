@@ -4,7 +4,7 @@ Async declarative component-based (and other buzzwords) programming made easy.
 
 ## Intro
 
-*Here should be an explanation of princile "from the bottom to the top".*
+*Here should be an explanation of principle "from the bottom to the top".*
 
 ## Examples
 
