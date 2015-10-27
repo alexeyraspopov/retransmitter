@@ -1,5 +1,7 @@
 # Container
 
+<img title="Build Status Images" src="https://travis-ci.org/alexeyraspopov/container.svg">
+
 Async declarative component-based (and other buzzwords) programming made easy.
 
 ## Intro
