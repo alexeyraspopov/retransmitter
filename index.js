@@ -98,6 +98,10 @@ function binary(fn) {
 	return (a, b) => fn(a, b);
 }
 
+function EmptyComponent() {
+	return null;
+}
+
 function enumerate(target) {
 	const isEnumerableComponent = typeof target === 'object';
 
@@ -106,7 +110,7 @@ function enumerate(target) {
 		invariant(hasSuccessPoint(target), 'At least Success component should be specified');
 	}
 
-	return isEnumerableComponent ? target : {success: target, pending: null, failure: null};
+	return isEnumerableComponent ? target : {success: target, pending: EmptyComponent, failure: EmptyComponent};
 }
 
 function isReactComponentEnum(target) {
