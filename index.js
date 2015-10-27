@@ -77,9 +77,9 @@ export default function Container(Component, options) {
 
 			switch (status) {
 			case 'success':
-				return React.createElement(componentEnum.success, assign(Object.create(null), fragments, this.props));
+				return React.createElement(componentEnum.success, assign(fragments, this.props));
 			case 'failure':
-				return React.createElement(componentEnum.failure, assign(Object.create(null), {error, onRetry}, this.props));
+				return React.createElement(componentEnum.failure, assign({error, onRetry}, this.props));
 			case 'pending':
 				// falls through
 			default:
