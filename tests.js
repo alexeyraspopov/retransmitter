@@ -23,7 +23,7 @@ describe('Container', () => {
 
 	it('should raise an error if no components are specified', () => {
 		assert.throws(() => Container({success: null}, {}), /Success, Failure and Pending should be React components/);
-		assert.throws(() => Container({}, {}), /At least Success component should be specified/);
+		assert.throws(() => Container({}, {}), /Success component should be specified/);
 	});
 
 	it('should render Pending element by default', () => {

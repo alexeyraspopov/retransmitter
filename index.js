@@ -107,7 +107,7 @@ function enumerate(target) {
 
 	if (isEnumerableComponent) {
 		invariant(isReactComponentEnum(target), 'Success, Failure and Pending should be React components');
-		invariant(hasSuccessPoint(target), 'At least Success component should be specified');
+		invariant(hasSuccessPoint(target), 'Success component should be specified');
 	}
 
 	return isEnumerableComponent ? target : {success: target, pending: EmptyComponent, failure: EmptyComponent};
