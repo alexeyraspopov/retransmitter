@@ -9,11 +9,12 @@ Async declarative component-based (and other buzzwords) programming made easy.
 ## Examples
 
 ```javascript
-function Item({title, description}) {
+function Item({key, title, description}) {
 	return (
 		<article>
 			<h2>{title}</h2>
 			<p>{description}</p>
+			<p><a href={`/articles/${key}`}>Read more</a></p>
 		</article>
 	);
 }
@@ -23,8 +24,8 @@ function Item({title, description}) {
 function ItemsList({items = []}) {
 	return (
 		<section>
-			{items.map(({title, description}) =>
-				<Item title={title} description={description} />
+			{items.map(({id, title, description}) =>
+				<Item key={id} title={title} description={description} />
 			)}
 		</section>
 	);
