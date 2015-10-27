@@ -15,12 +15,13 @@ describe('Container', () => {
 
 	it('should create React component if enum is used', () => {
 		const PContainer = Container({success: Component}, {});
+
 		assert.ok(React.isValidElement(<PContainer />), 'Container should be a React component');
 		assert.equal(PContainer.displayName, 'ComponentContainer', 'Container should have Component\'s name with suffix');
 	});
 
 	it('should raise an error if no components are specified', () => {
-		assert.throws(() => Container({success: null}, {}), /components/);
-		assert.throws(() => Container({}, {}), /specified/);
+		assert.throws(() => Container({success: null}, {}), /Success, Failure and Pending should be React components/);
+		assert.throws(() => Container({}, {}), /At least Success component should be specified/);
 	});
 });
