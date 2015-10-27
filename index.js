@@ -32,11 +32,16 @@ export default function Container(Component, options) {
 			};
 		},
 
+		fetchFragment(fragment, variables, name) {
+			return fragment(variables)
+				.then(data => ({[name]: data}));
+		},
+
 		fetch(newVariables) {
 			const variables = assign(Object.create(null), initialVariables, newVariables);
 
 			const promises = Object.keys(fragments)
-				.map(key => fragments[key](variables).then(data => ({[key]: data})));
+				.map(key => this.fetchFragment(fragments[key], variables, key));
 
 			Promise.all(promises).then(
 				results => this.setState({
