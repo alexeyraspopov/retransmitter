@@ -6,6 +6,14 @@ Async declarative component-based (and other buzzwords) programming made easy.
 
 *Here should be an explanation of principle "from the bottom to the top".*
 
+## How it works
+
+```
+--0----------------------------|
+----1--------------------------|
+----{0, 1}---------------------|
+```
+
 ## Examples
 
 ```javascript
