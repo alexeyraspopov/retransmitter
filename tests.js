@@ -33,6 +33,6 @@ describe('Container', () => {
 
 		ReactShallow.render(<PContainer />);
 
-		assert.ok(TestUtils.isElementOfType(ReactShallow.getRenderOutput(), Spinner), 'no bueno');
+		assert.ok(TestUtils.isElementOfType(ReactShallow.getRenderOutput(), Spinner), 'Pending component should be rendered');
 	});
 });
