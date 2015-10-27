@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/alexeyraspopov/container#readme",
   "peerDependencies": {
-    "invariant": "~2.1.1",
+    "invariant": ">1",
     "object-assign": "*",
     "react": "0.14.x",
     "rx": "~4.0.6"
