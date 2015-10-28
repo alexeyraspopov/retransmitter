@@ -3,6 +3,7 @@ import ListPending from 'components/ListPending';
 import ListError from 'components/ListError';
 import List from 'components/List';
 import Container from '../../../index';
+import * as ItemsAPI from 'api/ItemsAPI';
 
 export default Container({
 	pending: ListPending,
@@ -11,17 +12,7 @@ export default Container({
 }, {
 	fragments: {
 		items({id}) {
-			const seed = [
-				{id: 'a', title: 'Hello', description: 'Article #1'},
-				{id: 'b', title: 'Hola', description: 'Article #2'},
-				{id: 'c', title: 'Привет', description: 'Article #3'},
-			];
-
-			return new Promise((resolve, reject) => {
-				setTimeout(() => {
-					Math.random() > 0.5 ? resolve(seed) : reject(new Error('Something happened'));
-				}, 1000);
-			});
+			return ItemsAPI.fetchItems();
 		},
 		query() {
 			return Promise.resolve('l');
