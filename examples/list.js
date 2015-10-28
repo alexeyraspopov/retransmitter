@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Container from './index';
+import Container from '../index';
 
 const ListContainer = Container({
 	pending: LoadingSpinner,
@@ -9,16 +9,16 @@ const ListContainer = Container({
 }, {
 	fragments: {
 		items({id}) {
-			return Promise.resolve([
+			return Math.random() > 0.5 ? Promise.resolve([
 				{id: 'a', title: 'Hello', description: 'Article #1'},
 				{id: 'b', title: 'Hola', description: 'Article #2'},
 				{id: 'c', title: 'Привет', description: 'Article #3'},
-			]);
+			]) : Promise.reject(new Error('Something happened'));
 		}
 	}
 });
 
-ReactDOM.render(ListContainer, document.querySelector('main'));
+ReactDOM.render(<ListContainer />, document.querySelector('main'));
 
 function Item({title, description}) {
 	return (
@@ -46,7 +46,7 @@ function LoadingSpinner() {
 function ListError({error, onRetry}) {
 	return (
 		<article>
-			<p>Oops... Something went wrong. Click <a onClick={onRetry()}>here</a> to retry</p>
+			<p>Oops... Something went wrong. Click <a href="#" onClick={onRetry}>here</a> to retry</p>
 		</article>
 	)
 }
