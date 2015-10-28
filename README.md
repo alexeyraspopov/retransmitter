@@ -2,6 +2,8 @@
 
 Async declarative component-based (and other buzzwords) programming made easy.
 
+***NB***: For now Container depends on Rx (used as peer dependency).
+
 ## Intro
 
 *Here should be an explanation of principle "from the bottom to the top".*
