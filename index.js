@@ -3,7 +3,9 @@ import {Observable} from 'rx';
 import assign from 'object-assign';
 import invariant from 'invariant';
 
-export default function Container(Component, options) {
+export default {create: Container, fromStore};
+
+function Container(Component, options) {
 	// fragments can return Promise, Observer, Subscription
 	// Component :: ReactClass | { pending, success, failure }
 	// Promise :: { then }
@@ -33,26 +35,33 @@ export default function Container(Component, options) {
 		},
 
 		fetchFragment(fragment, variables, name) {
-			return fragment(variables)
-				.then(data => ({[name]: data}));
+			const fragmentContainer = fragment(variables)
+
+			if (typeof fragmentContainer.then === 'function') {
+				return Observable.fromPromise(fragmentContainer)
+					.map(data => ({[name]: data}));
+			}
+			// assume that fragmentContainer is Observable
+			return fragmentContainer.map(data => ({[name]: data}));
 		},
 
 		fetch(newVariables) {
 			const variables = assign({}, initialVariables, newVariables);
 
-			const promises = Object.keys(fragments)
+			const streams = Object.keys(fragments)
 				.map(key => this.fetchFragment(fragments[key], variables, key));
 
-			Promise.all(promises).then(
-				results => this.setState({
-					status: 'success',
-					fragments: results.reduce(binary(assign), {}),
-				}),
-				error => this.setState({
-					status: 'failure',
-					error,
-				})
-			);
+			Observable.combineLatest(streams)
+				.subscribe(
+					results => this.setState({
+						status: 'success',
+						fragments: results.reduce(binary(assign), {}),
+					}),
+					error => this.setState({
+						status: 'failure',
+						error,
+					})
+				);
 		},
 
 		refetch() {
@@ -121,4 +130,11 @@ function isReactComponentEnum(target) {
 
 function hasSuccessPoint(target) {
 	return typeof target.success === 'function';
+}
+
+function fromStore(store) {
+	return Observable.create(observer => {
+		const unsubscribe = store.subscribe(() => observer.onNext(store.getState()));
+		return {dispose() { unsubscribe() }};
+	}).startWith(store.getState());
 }
