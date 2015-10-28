@@ -129,12 +129,12 @@ function hasSuccessPoint(target) {
 }
 
 function fromEverything(object) {
-	if (target instanceof Promise) {
-		return Observable.fromPromise(target);
+	if (object instanceof Promise) {
+		return Observable.fromPromise(object);
 	}
 
 	// assume that fragmentContainer is Observable by default
-	return target;
+	return object;
 }
 
 function fromStore(store) {
