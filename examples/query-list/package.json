@@ -2,9 +2,9 @@
   "name": "examples",
   "version": "0.0.1",
   "description": "Container examples",
-  "main": "list.js",
+  "main": "index.js",
   "scripts": {
-    "start": "watchify -e list.js -t babelify -o bundle.js -dv & http-server . -p 3000"
+    "start": "watchify -e index.js -t babelify -o bundle.js -dv & http-server . -p 3000"
   },
   "repository": "alexeyraspopov/container",
   "author": "Alexey Raspopov",
@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "react": "~0.14.0",
+    "react-dom": "~0.14.0",
     "react-redux": "~4.0.0",
     "redux": "~3.0.4"
   }

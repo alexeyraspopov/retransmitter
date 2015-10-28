@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Container from '../index';
+import Container from '../../index';
 
 const ListContainer = Container({
 	pending: LoadingSpinner,
@@ -20,11 +20,26 @@ const ListContainer = Container({
 					Math.random() > 0.5 ? resolve(seed) : reject(new Error('Something happened'));
 				}, 1000);
 			});
+		},
+		query() {
+			return Promise.resolve('l');
 		}
 	}
 });
 
-ReactDOM.render(<ListContainer />, document.querySelector('main'));
+ReactDOM.render(<App />, document.querySelector('main'));
+
+function App() {
+	return (
+		<div>
+			<ListContainer />
+		</div>
+	);
+}
+
+function ItemSearch({query, onChange}) {
+	return <input type="search" value={query} onChange={onChange} />;
+}
 
 function Item({title, description}) {
 	return (
@@ -35,12 +50,13 @@ function Item({title, description}) {
 	);
 }
 
-function List({items}) {
+function List({items, query = ''}) {
+	const isQueried = ({title}) => title.toLowerCase().includes(query);
+	const item = ({id, title, description}) => <Item key={id} title={title} description={description} />;
+
 	return (
 		<section>
-			{items.map(({id, title, description}) =>
-				<Item key={id} title={title} description={description} />
-			)}
+			{items.filter(isQueried).map(item)}
 		</section>
 	);
 }
