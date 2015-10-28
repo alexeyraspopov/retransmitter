@@ -38,7 +38,7 @@ export default function Container(Component, options) {
 		},
 
 		fetch(newVariables) {
-			const variables = assign(Object.create(null), initialVariables, newVariables);
+			const variables = assign({}, initialVariables, newVariables);
 
 			const promises = Object.keys(fragments)
 				.map(key => this.fetchFragment(fragments[key], variables, key));
@@ -46,7 +46,7 @@ export default function Container(Component, options) {
 			Promise.all(promises).then(
 				results => this.setState({
 					status: 'success',
-					fragments: results.reduce(binary(assign), Object.create(null)),
+					fragments: results.reduce(binary(assign), {}),
 				}),
 				error => this.setState({
 					status: 'failure',
