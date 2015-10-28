@@ -60,23 +60,28 @@ function Container(Component, options) {
 				);
 		},
 
-		refetch() {
+		waitForUpdates() {
 			this.setState({status: 'pending', error: null});
-			this.disposables = this.fetch(this.props.variables);
+			this.dispose();
+		},
+
+		refetch() {
+			this.waitForUpdates();
+			this.dispose = this.fetch(this.props.variables);
 		},
 
 		componentWillMount() {
-			this.disposables = this.fetch(this.props.variables);
+			this.dispose = this.fetch(this.props.variables);
 		},
 
 		componentWillUnmount() {
-			this.disposables.dispose();
+			this.dispose.dispose();
 		},
 
 		componentWillReceiveProps(nextProps) {
 			if (shouldContainerUpdate.call(this, nextProps)) {
-				this.setState({status: 'pending', error: null});
-				this.disposables = this.fetch(nextProps.variables);
+				this.waitForUpdates();
+				this.dispose = this.fetch(nextProps.variables);
 			}
 		},
 
