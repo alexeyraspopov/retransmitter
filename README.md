@@ -45,7 +45,7 @@ function ItemsList({items = []}) {
 ```
 
 ```javascript
-ItemsListContainer = Container(ItemsList, {
+ItemsListContainer = Container.create(ItemsList, {
 	items() {
 		return fetch('/items')
 			.then(r => r.json());
