@@ -9,10 +9,12 @@ Async declarative component-based (and other buzzwords) programming made easy.
 ## How it works
 
 ```
---0--------------------------->|
-----1------------------------->|
-----{0, 1}-------------------->|
+--0---------------------------|>
+----1-------------------------|>
+----{0, 1}--------------------|>
 ```
+
+See more [here](http://rxmarbles.com/#combineLatest).
 
 ## Examples
 
