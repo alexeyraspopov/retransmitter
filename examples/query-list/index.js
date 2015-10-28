@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider, connect as Connect} from 'react-redux';
+import {createStore as Store} from 'redux';
 import Container from '../../index';
 
 const ListContainer = Container({
@@ -27,18 +29,46 @@ const ListContainer = Container({
 	}
 });
 
+const QueryStore = Store(QueryState);
+const ItemSearchConnect = Connect(query => ({
+	query,
+	onChange: event => QueryStore.dispatch(changeQuery(event.target.value))
+}))(ItemSearch);
+
+function ItemSearchContainer() {
+	return (
+		<Provider store={QueryStore}>
+			<ItemSearchConnect />
+		</Provider>
+	);
+}
+
 ReactDOM.render(<App />, document.querySelector('main'));
+
+function QueryState(query = 'l', action) {
+	switch (action.type) {
+	case 'QUERY_CHANGED':
+		return action.query;
+	default:
+		return query;
+	}
+}
+
+function changeQuery(query) {
+	return {type: 'QUERY_CHANGED', query};
+}
 
 function App() {
 	return (
 		<div>
+			<ItemSearchContainer />
 			<ListContainer />
 		</div>
 	);
 }
 
 function ItemSearch({query, onChange}) {
-	return <input type="search" value={query} onChange={onChange} />;
+	return <input type="text" value={query} onChange={onChange} />;
 }
 
 function Item({title, description}) {
