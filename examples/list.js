@@ -9,11 +9,17 @@ const ListContainer = Container({
 }, {
 	fragments: {
 		items({id}) {
-			return Math.random() > 0.5 ? Promise.resolve([
+			const seed = [
 				{id: 'a', title: 'Hello', description: 'Article #1'},
 				{id: 'b', title: 'Hola', description: 'Article #2'},
 				{id: 'c', title: 'Привет', description: 'Article #3'},
-			]) : Promise.reject(new Error('Something happened'));
+			];
+
+			return new Promise((resolve, reject) => {
+				setTimeout(() => {
+					Math.random() > 0.5 ? resolve(seed) : reject(new Error('Something happened'));
+				}, 1000);
+			});
 		}
 	}
 });
