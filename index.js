@@ -47,11 +47,11 @@ function Container(Component, options) {
 			const streams = Object.keys(fragments)
 				.map(key => this.fetchFragment(fragments[key], variables, key));
 
-			Observable.combineLatest(streams)
+			return Observable.combineLatest(streams)
 				.subscribe(
 					results => this.setState({
 						status: 'success',
-						fragments: results.reduce(binary(assign), {}),
+						fragments: results.reduce((a, b) => assign(a, b), {}),
 					}),
 					error => this.setState({
 						status: 'failure',
@@ -62,22 +62,21 @@ function Container(Component, options) {
 
 		refetch() {
 			this.setState({status: 'pending', error: null});
-			this.fetch(this.props.variables);
+			this.disposables = this.fetch(this.props.variables);
 		},
 
 		componentWillMount() {
-			this.disposables = [];
-			this.fetch(this.props.variables);
+			this.disposables = this.fetch(this.props.variables);
 		},
 
 		componentWillUnmount() {
-			this.disposables.forEach(fn => fn());
+			this.disposables.dispose();
 		},
 
 		componentWillReceiveProps(nextProps) {
 			if (shouldContainerUpdate.call(this, nextProps)) {
 				this.setState({status: 'pending', error: null});
-				this.fetch(nextProps.variables);
+				this.disposables = this.fetch(nextProps.variables);
 			}
 		},
 
@@ -97,10 +96,6 @@ function Container(Component, options) {
 			}
 		},
 	});
-}
-
-function binary(fn) {
-	return (a, b) => fn(a, b);
 }
 
 function EmptyComponent() {
