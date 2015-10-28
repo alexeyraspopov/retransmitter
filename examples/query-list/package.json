@@ -4,7 +4,8 @@
   "description": "Container examples",
   "main": "index.js",
   "scripts": {
-    "start": "watchify -e index.js -t babelify -o bundle.js -dv & http-server . -p 3000"
+    "watchify": "NODE_PATH=node_modules:. watchify -e index.js -t babelify -o bundle.js -dv",
+    "start": "npm run watchify & http-server . -p 3000"
   },
   "repository": "alexeyraspopov/container",
   "author": "Alexey Raspopov",
