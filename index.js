@@ -3,7 +3,7 @@ import {Observable} from 'rx';
 import assign from 'object-assign';
 import invariant from 'invariant';
 
-export default {create: Container, fromStore};
+export default {create: Container, fromPromise: Observable.fromPromise, fromStore};
 
 function Container(Component, options) {
 	// fragments can return Promise, Observer, Subscription
@@ -35,14 +35,10 @@ function Container(Component, options) {
 		},
 
 		fetchFragment(fragment, variables, name) {
-			const fragmentContainer = fragment(variables)
+			const fragmentContainer = fragment(variables);
+			const observable = fromEverything(fragmentContainer);
 
-			if (typeof fragmentContainer.then === 'function') {
-				return Observable.fromPromise(fragmentContainer)
-					.map(data => ({[name]: data}));
-			}
-			// assume that fragmentContainer is Observable
-			return fragmentContainer.map(data => ({[name]: data}));
+			return observable.map(data => ({[name]: data}));
 		},
 
 		fetch(newVariables) {
@@ -130,6 +126,15 @@ function isReactComponentEnum(target) {
 
 function hasSuccessPoint(target) {
 	return typeof target.success === 'function';
+}
+
+function fromEverything(object) {
+	if (target instanceof Promise) {
+		return Observable.fromPromise(target);
+	}
+
+	// assume that fragmentContainer is Observable by default
+	return target;
 }
 
 function fromStore(store) {
