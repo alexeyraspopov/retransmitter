@@ -1,5 +1,5 @@
 import React, {PropTypes} from 'react';
-import {Observable} from 'rx';
+import {Observable, helpers} from 'rx';
 import assign from 'object-assign';
 import invariant from 'invariant';
 
@@ -124,7 +124,7 @@ function hasSuccessPoint(target) {
 }
 
 function fromEverything(object) {
-	if (object instanceof Promise) {
+	if (helpers.isPromise(object)) {
 		return Observable.fromPromise(object);
 	}
 
