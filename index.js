@@ -56,7 +56,7 @@ export default function Container(Component, options) {
 		},
 
 		refetch() {
-			this.setState({status: 'pending'});
+			this.setState({status: 'pending', error: null});
 			this.fetch(this.props.variables);
 		},
 
@@ -71,7 +71,7 @@ export default function Container(Component, options) {
 
 		componentWillReceiveProps(nextProps) {
 			if (shouldContainerUpdate.call(this, nextProps)) {
-				this.setState({status: 'pending'});
+				this.setState({status: 'pending', error: null});
 				this.fetch(nextProps.variables);
 			}
 		},
