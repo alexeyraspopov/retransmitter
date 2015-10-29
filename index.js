@@ -41,6 +41,29 @@ function Container(Component, options) {
 			return observable.map(data => ({[name]: data}));
 		},
 
+		success(results) {
+			this.setState({
+				status: 'success',
+				fragments: results.reduce((a, b) => assign(a, b), {}),
+			});
+		},
+
+		failure(error) {
+			this.setState({
+				status: 'failure',
+				error: {type: 'FETCH_FAILED', error},
+			});
+		},
+
+		pending() {
+			this.setState({
+				status: 'pending',
+				error: null,
+			});
+
+			this.disposable.dispose();
+		},
+
 		fetch(newVariables) {
 			const variables = assign({}, initialVariables, newVariables);
 
@@ -49,24 +72,13 @@ function Container(Component, options) {
 
 			return Observable.combineLatest(streams)
 				.subscribe(
-					results => this.setState({
-						status: 'success',
-						fragments: results.reduce((a, b) => assign(a, b), {}),
-					}),
-					error => this.setState({
-						status: 'failure',
-						error: {type: 'FETCH_FAILED', error},
-					})
+					results => this.success(results),
+					error => this.failure(error)
 				);
 		},
 
-		waitForUpdates() {
-			this.setState({status: 'pending', error: null});
-			this.disposable.dispose();
-		},
-
 		refetch() {
-			this.waitForUpdates();
+			this.pending();
 			this.disposable = this.fetch(this.props.variables);
 		},
 
@@ -80,7 +92,7 @@ function Container(Component, options) {
 
 		componentWillReceiveProps(nextProps) {
 			if (shouldContainerUpdate.call(this, nextProps)) {
-				this.waitForUpdates();
+				this.pending();
 				this.disposable = this.fetch(nextProps.variables);
 			}
 		},
@@ -97,6 +109,7 @@ function Container(Component, options) {
 			case 'pending':
 				// falls through
 			default:
+				// TODO: pass onCancel
 				return React.createElement(componentEnum.pending, this.props);
 			}
 		},
