@@ -6,11 +6,6 @@ import invariant from 'invariant';
 export default {create: Container, fromPromise: Observable.fromPromise, fromStore};
 
 function Container(Component, options) {
-	// fragments can return Promise, Observer, Subscription
-	// Component :: ReactClass | { pending, success, failure }
-	// Promise :: { then }
-	// Observer :: { subscribe -> unsubscribe }
-	// Subscription :: { getState, subscribe -> { dispose } }
 	const {
 		fragments = {},
 		shouldContainerUpdate = () => true,
