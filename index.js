@@ -34,13 +34,6 @@ function Container(Component, options) {
 			};
 		},
 
-		fetchFragment(fragment, variables, name) {
-			const fragmentContainer = fragment(variables);
-			const observable = fromEverything(fragmentContainer);
-
-			return observable.map(data => ({[name]: data}));
-		},
-
 		success(results) {
 			this.setState({
 				status: 'success',
@@ -62,6 +55,13 @@ function Container(Component, options) {
 			});
 
 			this.disposable.dispose();
+		},
+
+		fetchFragment(fragment, variables, name) {
+			const fragmentContainer = fragment(variables);
+			const observable = fromEverything(fragmentContainer);
+
+			return observable.map(data => ({[name]: data}));
 		},
 
 		fetch(newVariables) {
