@@ -55,7 +55,7 @@ function Container(Component, options) {
 					}),
 					error => this.setState({
 						status: 'failure',
-						error,
+						error: {type: 'FETCH_FAILED', error},
 					})
 				);
 		},
