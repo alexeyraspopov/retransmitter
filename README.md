@@ -60,7 +60,7 @@ ReactDOM.render(<ItemsListContainer />, ...);
 ## Multiple choise component
 
 ```javascript
-ItemsListContainer = Container({
+ItemsListContainer = Container.create({
 	pending: LoadingSpinner,
 	success: ItemsList,
 	failure: ItemsListError
