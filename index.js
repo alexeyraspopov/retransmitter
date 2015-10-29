@@ -62,26 +62,26 @@ function Container(Component, options) {
 
 		waitForUpdates() {
 			this.setState({status: 'pending', error: null});
-			this.dispose();
+			this.disposable.dispose();
 		},
 
 		refetch() {
 			this.waitForUpdates();
-			this.dispose = this.fetch(this.props.variables);
+			this.disposable = this.fetch(this.props.variables);
 		},
 
 		componentWillMount() {
-			this.dispose = this.fetch(this.props.variables);
+			this.disposable = this.fetch(this.props.variables);
 		},
 
 		componentWillUnmount() {
-			this.dispose.dispose();
+			this.disposable.dispose();
 		},
 
 		componentWillReceiveProps(nextProps) {
 			if (shouldContainerUpdate.call(this, nextProps)) {
 				this.waitForUpdates();
-				this.dispose = this.fetch(nextProps.variables);
+				this.disposable = this.fetch(nextProps.variables);
 			}
 		},
 
