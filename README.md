@@ -2,7 +2,7 @@
 
 Async declarative component-based (and other buzzwords) programming made easy.
 
-***NB***: For now Container depends on Rx (used as peer dependency).
+***NB***: For now Container depends on [Rx](https://github.com/Reactive-Extensions/RxJS) (used as peer dependency).
 
 ## Intro
 
@@ -68,6 +68,9 @@ ItemsListContainer = Container({
 	items() {
 		return fetch('/items')
 			.then(r => r.json());
+	},
+	query() {
+		return Container.fromStore(QueryStore);
 	}
 });
 ```
