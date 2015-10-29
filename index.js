@@ -49,7 +49,7 @@ function Container(Component, options) {
 				error: null,
 			});
 
-			this.disposable.dispose();
+			this.subscription.dispose();
 		},
 
 		fetchFragment(fragment, variables, name) {
@@ -74,21 +74,21 @@ function Container(Component, options) {
 
 		refetch() {
 			this.pending();
-			this.disposable = this.fetch(this.props.variables);
+			this.subscription = this.fetch(this.props.variables);
 		},
 
 		componentWillMount() {
-			this.disposable = this.fetch(this.props.variables);
+			this.subscription = this.fetch(this.props.variables);
 		},
 
 		componentWillUnmount() {
-			this.disposable.dispose();
+			this.subscription.dispose();
 		},
 
 		componentWillReceiveProps(nextProps) {
 			if (shouldContainerUpdate.call(this, nextProps)) {
 				this.pending();
-				this.disposable = this.fetch(nextProps.variables);
+				this.subscription = this.fetch(nextProps.variables);
 			}
 		},
 
