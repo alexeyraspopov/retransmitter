@@ -75,6 +75,12 @@ ItemsListContainer = Container.create({
 });
 ```
 
+```
+--[items]-------------------------------|> (from items fragment)
+------"query"----------"query2"---------|> (from query store)
+------{items, query}---{items, query2}--|> (result that will be passed to ItemsList)
+```
+
 When `<ItemsListContainer />` is added to the view `pending` element will be rendered at first. After loading is finished `success` or `failure` element will be rendered (depends on results). `failure` element will receive next props:
 
  * `error` — the error instance that will be received in failed getter
