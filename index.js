@@ -24,6 +24,7 @@ function Container(Component, options) {
 
 		statics: {
 			isRootContainer,
+			getFragment(name, variables) {},
 		},
 
 		getInitialState() {
