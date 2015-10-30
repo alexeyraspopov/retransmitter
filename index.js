@@ -128,7 +128,7 @@ function enumerate(target) {
 
 	if (isEnumerableComponent) {
 		invariant(isReactComponentEnum(target), 'Success, Failure and Pending should be React components');
-		invariant(hasSuccessPoint(target), 'Success component should be specified');
+		invariant(isFunction(target.success), 'Success component should be specified');
 
 		return target;
 	}
@@ -139,11 +139,11 @@ function enumerate(target) {
 function isReactComponentEnum(target) {
 	return ['success', 'failure', 'pending']
 		.filter(type => target.hasOwnProperty(type))
-		.every(type => typeof target[type] === 'function');
+		.every(type => isFunction(target[type]));
 }
 
-function hasSuccessPoint(target) {
-	return typeof target.success === 'function';
+function isFunction(target) {
+	return typeof target === 'function';
 }
 
 function fromEverything(object) {
