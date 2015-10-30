@@ -25,7 +25,13 @@ function Container(Component, options) {
 
 		statics: {
 			isRootContainer,
-			getFragment(name, variables) {},
+			getFragment(name, variables) {
+				invariant(fragments.hasOwnProperty(name), `Fragment ${name} of ${containerName} doesn't exist`);
+
+				const allVariables = assign({}, initialVariables, variables);
+
+				return fragments[name](allVariables);
+			},
 		},
 
 		getInitialState() {
