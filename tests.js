@@ -6,6 +6,9 @@ import assert from 'assert';
 describe('Container', () => {
 	// TODO: describe use cases
 	const Component = (props) => <div />;
+	const VALUE = 'value';
+	const FIRST_ACTION_TIMEOUT = 1;
+	const SECOND_ACTION_TIMEOUT = 2;
 
 	it('should create React component', () => {
 		const PContainer = Container.create(Component, {});
@@ -36,7 +39,31 @@ describe('Container', () => {
 		assert.ok(TestUtils.isElementOfType(ReactShallow.getRenderOutput(), Spinner), 'Pending component should be rendered');
 	});
 
-	// should render Success component if fragments were passed via props
+	it('should render Success component if fragments were passed via props', (done) => {
+		const PContainer = Container.create(Component, {
+			fragments: {
+				thing() {
+					return new Promise((resolve) => {
+						setTimeout(resolve, FIRST_ACTION_TIMEOUT, VALUE);
+					});
+				}
+			}
+		});
+		const ReactShallow = TestUtils.createRenderer();
+
+		ReactShallow.render(<PContainer />);
+
+		setTimeout(() => {
+			const Output = ReactShallow.getRenderOutput();
+
+			assert.ok(TestUtils.isElementOfType(Output, Component), 'Success component should be rendered');
+			assert.deepEqual(Output.props, { thing: VALUE }, 'Component should be rendered with data fetched via fragments');
+			done();
+		}, SECOND_ACTION_TIMEOUT);
+	});
+
+	// should call fragments with passed variables
+	// should use initial variables if actual are not specified
 	// should dispose subscriptions after unmount
 	// should actually works with promises, stores and simple observables
 	// should handle failed streams and render Failure element
