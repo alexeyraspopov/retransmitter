@@ -13,12 +13,17 @@ function Container(Component, options) {
 	} = options;
 
 	const componentEnum = enumerate(Component);
+	const isRootContainer = options.hasOwnProperty('initialVariables');
 
 	return React.createClass({
 		displayName: `${componentEnum.success.displayName || componentEnum.success.name}Container`,
 
 		propTypes: {
 			variables: PropTypes.object,
+		},
+
+		statics: {
+			isRootContainer,
 		},
 
 		getInitialState() {
