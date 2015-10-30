@@ -43,10 +43,9 @@ function Container(Component, options) {
 		},
 
 		success(results) {
-			this.setState({
-				status: 'success',
-				fragments: results.reduce((a, b) => assign(a, b), {}),
-			});
+			const combinedFragments = results.reduce((a, b) => assign(a, b), {});
+
+			this.setState({status: 'success', fragments: combinedFragments});
 		},
 
 		failure(error) {
@@ -57,11 +56,7 @@ function Container(Component, options) {
 		},
 
 		pending() {
-			this.setState({
-				status: 'pending',
-				error: null,
-			});
-
+			this.setState({status: 'pending', error: null});
 			this.subscription.dispose();
 		},
 
@@ -74,7 +69,6 @@ function Container(Component, options) {
 
 		fetch(newVariables) {
 			const variables = assign({}, initialVariables, newVariables);
-
 			// TODO: check fragment availability via props
 			const streams = Object.keys(fragments)
 				.map(key => this.fetchFragment(key, variables));
@@ -135,9 +129,11 @@ function enumerate(target) {
 	if (isEnumerableComponent) {
 		invariant(isReactComponentEnum(target), 'Success, Failure and Pending should be React components');
 		invariant(hasSuccessPoint(target), 'Success component should be specified');
+
+		return target;
 	}
 
-	return isEnumerableComponent ? target : {success: target, pending: EmptyComponent, failure: EmptyComponent};
+	return {success: target, pending: EmptyComponent, failure: EmptyComponent};
 }
 
 function isReactComponentEnum(target) {
@@ -162,6 +158,7 @@ function fromEverything(object) {
 function fromStore(store) {
 	return Observable.create(observer => {
 		const unsubscribe = store.subscribe(() => observer.onNext(store.getState()));
+
 		return {dispose: unsubscribe};
 	}).startWith(store.getState());
 }
