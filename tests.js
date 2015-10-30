@@ -62,6 +62,7 @@ describe('Container', () => {
 		}, SECOND_ACTION_TIMEOUT);
 	});
 
+	// should immediately render Success component if fragments are passed via props
 	// should call fragments with passed variables
 	// should use initial variables if actual are not specified
 	// should dispose subscriptions after unmount
