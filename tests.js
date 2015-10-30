@@ -39,7 +39,7 @@ describe('Container', () => {
 		assert.ok(TestUtils.isElementOfType(ReactShallow.getRenderOutput(), Spinner), 'Pending component should be rendered');
 	});
 
-	it('should render Success component if fragments were passed via props', (done) => {
+	it('should render Success component with data fetched from fragments', (done) => {
 		const PContainer = Container.create(Component, {
 			fragments: {
 				thing() {
