@@ -69,6 +69,7 @@ function Container(Component, options) {
 		fetch(newVariables) {
 			const variables = assign({}, initialVariables, newVariables);
 
+			// TODO: check fragment availability via props
 			const streams = Object.keys(fragments)
 				.map(key => this.fetchFragment(key, variables));
 
