@@ -2,6 +2,7 @@ import React from 'react';
 import TestUtils from 'react/lib/ReactTestUtils';
 import Container from './index';
 import assert from 'assert';
+import sinon from 'sinon';
 
 describe('Container', () => {
 	// TODO: describe use cases
