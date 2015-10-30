@@ -35,4 +35,9 @@ describe('Container', () => {
 
 		assert.ok(TestUtils.isElementOfType(ReactShallow.getRenderOutput(), Spinner), 'Pending component should be rendered');
 	});
+
+	// should render Success element if fragments were passed via props
+	// should dispose subscriptions after unmount
+	// should actually works with promises, stores and simple observables
+	// should handle failed streams and render Failure element
 });
