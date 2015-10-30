@@ -15,12 +15,13 @@ function Container(Component, options) {
 	const componentEnum = enumerate(Component);
 	const containerName = componentEnum.success.displayName || componentEnum.success.name;
 	const isRootContainer = options.hasOwnProperty('initialVariables');
+	const variablesPropType = isRootContainer ? propTypesShape(initialVariables) : PropTypes.object;
 
 	return React.createClass({
 		displayName: `${containerName}Container`,
 
 		propTypes: {
-			variables: PropTypes.object,
+			variables: variablesPropType,
 		},
 
 		statics: {
@@ -157,4 +158,11 @@ function fromStore(store) {
 
 		return {dispose: unsubscribe};
 	}).startWith(store.getState());
+}
+
+function propTypesShape(initialVariables) {
+	const shape = Object.keys(initialVariables)
+		.reduce((acc, key) => assign(acc, {[key]: PropTypes.any}), {});
+
+	return PropTypes.shape(shape);
 }
