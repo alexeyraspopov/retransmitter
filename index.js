@@ -58,8 +58,8 @@ function Container(Component, options) {
 			this.subscription.dispose();
 		},
 
-		fetchFragment(fragment, variables, name) {
-			const fragmentContainer = fragment(variables);
+		fetchFragment(name, variables) {
+			const fragmentContainer = fragments[name](variables);
 			const observable = fromEverything(fragmentContainer);
 
 			return observable.map(data => ({[name]: data}));
@@ -69,7 +69,7 @@ function Container(Component, options) {
 			const variables = assign({}, initialVariables, newVariables);
 
 			const streams = Object.keys(fragments)
-				.map(key => this.fetchFragment(fragments[key], variables, key));
+				.map(key => this.fetchFragment(key, variables));
 
 			return Observable.combineLatest(streams)
 				.subscribe(
