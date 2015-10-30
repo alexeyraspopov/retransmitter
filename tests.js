@@ -26,7 +26,7 @@ describe('Container', () => {
 		assert.throws(() => Container.create({}, {}), /Success component should be specified/);
 	});
 
-	it('should render Pending element by default', () => {
+	it('should render Pending component by default', () => {
 		const Spinner = () => <p>Loading...</p>;
 		const PContainer = Container.create({success: Component, pending: Spinner}, {});
 		const ReactShallow = TestUtils.createRenderer();
@@ -36,8 +36,9 @@ describe('Container', () => {
 		assert.ok(TestUtils.isElementOfType(ReactShallow.getRenderOutput(), Spinner), 'Pending component should be rendered');
 	});
 
-	// should render Success element if fragments were passed via props
+	// should render Success component if fragments were passed via props
 	// should dispose subscriptions after unmount
 	// should actually works with promises, stores and simple observables
 	// should handle failed streams and render Failure element
+	// should render `null` for not specified components
 });
