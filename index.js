@@ -154,7 +154,8 @@ function fromEverything(object) {
 
 function fromStore(store) {
 	return Observable.create(observer => {
-		const unsubscribe = store.subscribe(() => observer.onNext(store.getState()));
+		const pushState = () => observer.onNext(store.getState());
+		const unsubscribe = store.subscribe(pushState);
 
 		return {dispose: unsubscribe};
 	}).startWith(store.getState());
