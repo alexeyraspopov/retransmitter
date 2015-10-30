@@ -154,6 +154,6 @@ function fromEverything(object) {
 function fromStore(store) {
 	return Observable.create(observer => {
 		const unsubscribe = store.subscribe(() => observer.onNext(store.getState()));
-		return {dispose() { unsubscribe() }};
+		return {dispose: unsubscribe};
 	}).startWith(store.getState());
 }
