@@ -69,8 +69,8 @@ function Container(Component, options) {
 
 		fetch(newVariables) {
 			const variables = assign({}, initialVariables, newVariables);
-			// TODO: check fragment availability via props
 			const streams = Object.keys(fragments)
+				.filter(key => !this.props.hasOwnProperty(key))
 				.map(key => this.fetchFragment(key, variables));
 
 			return Observable.combineLatest(streams)
