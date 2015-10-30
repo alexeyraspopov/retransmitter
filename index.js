@@ -71,8 +71,13 @@ function Container(Component, options) {
 		fetch(newVariables) {
 			const variables = assign({}, initialVariables, newVariables);
 			const streams = Object.keys(fragments)
-				.filter(key => !this.props.hasOwnProperty(key))
-				.map(key => this.fetchFragment(key, variables));
+				.map(name => {
+					if (this.props.hasOwnProperty(name)) {
+						return Observable.just({[name]: this.props[name]});
+					}
+
+					return this.fetchFragment(name, variables);
+				});
 
 			return Observable.combineLatest(streams)
 				.subscribe(
@@ -107,7 +112,7 @@ function Container(Component, options) {
 
 			switch (status) {
 			case 'success':
-				return React.createElement(componentEnum.success, assign(fragments, this.props));
+				return React.createElement(componentEnum.success, assign({}, fragments, this.props));
 			case 'failure':
 				return React.createElement(componentEnum.failure, assign({error, onRetry}, this.props));
 			case 'pending':

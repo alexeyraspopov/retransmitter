@@ -63,6 +63,28 @@ describe('Container', () => {
 		}, SECOND_ACTION_TIMEOUT);
 	});
 
+	// waiting for https://github.com/facebook/react/pull/5247 being merged
+	xit('should immediately render Success component if fragments are passed via props', () => {
+		const PContainer = Container.create(Component, {
+			fragments: {
+				thing() {
+					return new Promise((resolve) => {
+						setTimeout(resolve, FIRST_ACTION_TIMEOUT, VALUE);
+					});
+				}
+			}
+		});
+		const ReactShallow = TestUtils.createRenderer();
+
+		ReactShallow.render(<PContainer thing={VALUE} />);
+
+		const Output = ReactShallow.getRenderOutput();
+
+		// TODO: check fragment that should not be called
+		assert.ok(TestUtils.isElementOfType(Output, Component), 'Success component should be rendered');
+		assert.deepEqual(Output.props, { thing: VALUE }, 'Component should be rendered with data fetched via fragments');
+	});
+
 	// should fail for incorrect prop types
 	// should immediately render Success component if fragments are passed via props
 	// should call fragments with passed variables
