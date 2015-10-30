@@ -5,6 +5,7 @@
   "main": "bundle.js",
   "scripts": {
     "test": "mocha --compilers js:babel/register tests.js",
+    "coverage": "istanbul cover _mocha --include index.js --report html -- tests.js -r babel/register",
     "prepublish": "babel index.js > bundle.js"
   },
   "repository": "alexeyraspopov/container",
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "babel": "~5.8.23",
+    "istanbul": "~0.4.0",
     "mocha": "~2.3.3"
   }
 }
