@@ -1,8 +1,8 @@
-# Container ![](https://travis-ci.org/alexeyraspopov/container.svg)
+# Retransmitter ![](https://travis-ci.org/alexeyraspopov/container.svg)
 
 Async declarative component-based (and other buzzwords) programming made easy.
 
-***NB***: For now Container depends on [Rx](https://github.com/Reactive-Extensions/RxJS) (used as peer dependency).
+***NB***: For now Retransmitter depends on [Rx](https://github.com/Reactive-Extensions/RxJS) (used as peer dependency).
 
 ## Intro
 
@@ -45,7 +45,7 @@ function ItemsList({items = []}) {
 ```
 
 ```javascript
-ItemsListContainer = Container.create(ItemsList, {
+ItemsListContainer = Retransmitter.create(ItemsList, {
 	items() {
 		return fetch('/items')
 			.then(r => r.json());
@@ -60,7 +60,7 @@ ReactDOM.render(<ItemsListContainer />, ...);
 ## Multiple choise component
 
 ```javascript
-ItemsListContainer = Container.create({
+ItemsListContainer = Retransmitter.create({
 	pending: LoadingSpinner,
 	success: ItemsList,
 	failure: ItemsListError
@@ -70,7 +70,7 @@ ItemsListContainer = Container.create({
 			.then(r => r.json());
 	},
 	query() {
-		return Container.fromStore(QueryStore);
+		return Retransmitter.fromStore(QueryStore);
 	}
 });
 ```
@@ -91,5 +91,5 @@ When `<ItemsListContainer />` is added to the view `pending` element will be ren
  - [x] Promises
  - [x] Observables (instances should have `subscribe()` that may return `{ dispose() }`)
  - [ ] Stores (instances should have `subscribe()` and `getState()`)
-   - [x] `Container.fromStore(store)`
+   - [x] `Retransmitter.fromStore(store)`
  - [ ] CSP channels

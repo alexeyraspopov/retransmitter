@@ -2,11 +2,11 @@ import React from 'react';
 import ListPending from 'components/ListPending';
 import ListError from 'components/ListError';
 import List from 'components/List';
-import Container from '../../../index';
+import Retransmitter from '../../../index';
 import QueryStore from 'stores/QueryStore';
 import * as ItemsAPI from 'api/ItemsAPI';
 
-export default Container.create({
+export default Retransmitter.create({
 	pending: ListPending,
 	success: List,
 	failure: ListError,
@@ -16,7 +16,7 @@ export default Container.create({
 			return ItemsAPI.fetchItems();
 		},
 		query() {
-			return Container.fromStore(QueryStore);
+			return Retransmitter.fromStore(QueryStore);
 		}
 	}
 });

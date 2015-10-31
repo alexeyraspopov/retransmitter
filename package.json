@@ -1,5 +1,5 @@
 {
-  "name": "container",
+  "name": "retransmitter",
   "version": "0.0.1",
   "description": "React Container",
   "main": "bundle.js",
@@ -8,7 +8,7 @@
     "coverage": "istanbul cover _mocha --include index.js --report html -- tests.js -r babel/register",
     "prepublish": "babel index.js > bundle.js"
   },
-  "repository": "alexeyraspopov/container",
+  "repository": "alexeyraspopov/retransmitter",
   "keywords": [
     "react",
     "container",
@@ -17,9 +17,9 @@
   "author": "Alexey Raspopov",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/alexeyraspopov/container/issues"
+    "url": "https://github.com/alexeyraspopov/retransmitter/issues"
   },
-  "homepage": "https://github.com/alexeyraspopov/container#readme",
+  "homepage": "https://github.com/alexeyraspopov/retransmitter#readme",
   "peerDependencies": {
     "invariant": ">1",
     "object-assign": "*",
