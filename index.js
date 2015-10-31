@@ -49,10 +49,9 @@ function Container(Component, options) {
 		},
 
 		failure(error) {
-			this.setState({
-				status: 'failure',
-				error: {type: 'FETCH_FAILED', error},
-			});
+			const errorInstance = {type: 'FETCH_FAILED', error};
+
+			this.setState({status: 'failure', error: errorInstance});
 		},
 
 		pending() {
