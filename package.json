@@ -1,7 +1,7 @@
 {
   "name": "retransmitter",
   "version": "0.0.1",
-  "description": "React Container",
+  "description": "Async-friendly stateful React containers",
   "main": "bundle.js",
   "scripts": {
     "test": "mocha --compilers js:babel/register tests.js",
@@ -12,7 +12,11 @@
   "keywords": [
     "react",
     "container",
-    "stateful"
+    "stateful",
+    "stores",
+    "observable",
+    "flux",
+    "redux"
   ],
   "author": "Alexey Raspopov",
   "license": "MIT",
