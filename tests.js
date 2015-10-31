@@ -1,10 +1,10 @@
 import React from 'react';
 import TestUtils from 'react/lib/ReactTestUtils';
-import Container from './index';
+import Retransmitter from './index';
 import assert from 'assert';
 import sinon from 'sinon';
 
-describe('Container', () => {
+describe('Retransmitter', () => {
 	// TODO: describe use cases
 	const Component = (props) => <div />;
 	const VALUE = 'value';
@@ -12,36 +12,36 @@ describe('Container', () => {
 	const SECOND_ACTION_TIMEOUT = 2;
 
 	it('should create React component', () => {
-		const PContainer = Container.create(Component, {});
+		const Container = Retransmitter.create(Component, {});
 
-		assert.ok(TestUtils.isElement(<PContainer />), 'Container should be a React component');
-		assert.equal(PContainer.displayName, 'ComponentContainer', 'Container should have Component\'s name with suffix');
+		assert.ok(TestUtils.isElement(<Container />), 'Container should be a React component');
+		assert.equal(Container.displayName, 'ComponentContainer', 'Container should have Component\'s name with suffix');
 	});
 
 	it('should create React component if enum is used', () => {
-		const PContainer = Container.create({success: Component}, {});
+		const Container = Retransmitter.create({success: Component}, {});
 
-		assert.ok(TestUtils.isElement(<PContainer />), 'Container should be a React component');
-		assert.equal(PContainer.displayName, 'ComponentContainer', 'Container should have Component\'s name with suffix');
+		assert.ok(TestUtils.isElement(<Container />), 'Container should be a React component');
+		assert.equal(Container.displayName, 'ComponentContainer', 'Container should have Component\'s name with suffix');
 	});
 
 	it('should raise an error if no components are specified', () => {
-		assert.throws(() => Container.create({success: null}, {}), /Success, Failure and Pending should be React components/);
-		assert.throws(() => Container.create({}, {}), /Success component should be specified/);
+		assert.throws(() => Retransmitter.create({success: null}, {}), /Success, Failure and Pending should be React components/);
+		assert.throws(() => Retransmitter.create({}, {}), /Success component should be specified/);
 	});
 
 	it('should render Pending component by default', () => {
 		const Spinner = () => <p>Loading...</p>;
-		const PContainer = Container.create({success: Component, pending: Spinner}, {});
+		const Container = Retransmitter.create({success: Component, pending: Spinner}, {});
 		const ReactShallow = TestUtils.createRenderer();
 
-		ReactShallow.render(<PContainer />);
+		ReactShallow.render(<Container />);
 
 		assert.ok(TestUtils.isElementOfType(ReactShallow.getRenderOutput(), Spinner), 'Pending component should be rendered');
 	});
 
 	it('should render Success component with data fetched from fragments', (done) => {
-		const PContainer = Container.create(Component, {
+		const Container = Retransmitter.create(Component, {
 			fragments: {
 				thing() {
 					return new Promise((resolve) => {
@@ -52,7 +52,7 @@ describe('Container', () => {
 		});
 		const ReactShallow = TestUtils.createRenderer();
 
-		ReactShallow.render(<PContainer />);
+		ReactShallow.render(<Container />);
 
 		setTimeout(() => {
 			const Output = ReactShallow.getRenderOutput();
@@ -65,7 +65,7 @@ describe('Container', () => {
 
 	// waiting for https://github.com/facebook/react/pull/5247 being merged
 	xit('should immediately render Success component if fragments are passed via props', () => {
-		const PContainer = Container.create(Component, {
+		const Container = Retransmitter.create(Component, {
 			fragments: {
 				thing() {
 					return new Promise((resolve) => {
@@ -76,7 +76,7 @@ describe('Container', () => {
 		});
 		const ReactShallow = TestUtils.createRenderer();
 
-		ReactShallow.render(<PContainer thing={VALUE} />);
+		ReactShallow.render(<Container thing={VALUE} />);
 
 		const Output = ReactShallow.getRenderOutput();
 
