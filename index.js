@@ -64,7 +64,7 @@ function Container(Component, options) {
 			const fragmentContainer = fragments[name](variables);
 			const observable = fromEverything(fragmentContainer);
 
-			return observable.map(data => ({[name]: data}));
+			return observable.map(data => wrapFragment(name, data));
 		},
 
 		fetch(newVariables) {
@@ -72,7 +72,7 @@ function Container(Component, options) {
 			const streams = Object.keys(fragments)
 				.map(name => {
 					if (this.props.hasOwnProperty(name)) {
-						return Observable.just({[name]: this.props[name]});
+						return Observable.just(wrapFragment(name, this.props[name]));
 					}
 
 					return this.fetchFragment(name, variables);
@@ -126,6 +126,10 @@ function Container(Component, options) {
 
 function EmptyComponent() {
 	return null;
+}
+
+function wrapFragment(name, value) {
+	return {[name]: value};
 }
 
 function enumerate(target) {
