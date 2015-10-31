@@ -85,7 +85,6 @@ describe('Retransmitter', () => {
 		assert.deepEqual(Output.props, { thing: VALUE }, 'Component should be rendered with data fetched via fragments');
 	});
 
-	// should fail for incorrect prop types
 	// should immediately render Success component if fragments are passed via props
 	// should call fragments with passed variables
 	// should use initial variables if actual are not specified
