@@ -3,7 +3,12 @@ import {Observable, helpers} from 'rx';
 import assign from 'object-assign';
 import invariant from 'invariant';
 
-export default {create: Container, fromPromise: Observable.fromPromise, fromStore};
+export default {
+	create: Container,
+	fromPromise: Observable.fromPromise,
+	fromValue: Observable.just,
+	fromStore,
+};
 
 function Container(Component, options) {
 	const {
@@ -26,7 +31,7 @@ function Container(Component, options) {
 		statics: {
 			isRootContainer,
 			getFragment(name, variables) {
-				invariant(fragments.hasOwnProperty(name), `Fragment ${name} of ${containerName} doesn't exist`);
+				invariant(fragments.hasOwnProperty(name), `Fragment ${name} of ${displayName} doesn't exist`);
 
 				const allVariables = assign({}, initialVariables, variables);
 
