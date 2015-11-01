@@ -8,6 +8,20 @@ Async declarative component-based (and other buzzwords) programming made easy.
 
 *Here should be an explanation of principle "from the bottom to the top".*
 
+## Installation
+
+Install via NPM:
+
+```bash
+npm install --save retransmitter
+```
+
+Require the lib in your code:
+
+```javascript
+import Transmitter from 'retransmitter';
+```
+
 ## How it works
 
 ```
