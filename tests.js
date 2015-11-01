@@ -85,11 +85,10 @@ describe('Transmitter', () => {
 		assert.deepEqual(Output.props, { thing: VALUE }, 'Component should be rendered with data fetched via fragments');
 	});
 
-	// should immediately render Success component if fragments are passed via props
 	// should call fragments with passed variables
 	// should use initial variables if actual are not specified
 	// should dispose subscriptions after unmount
-	// should actually works with promises, stores and simple observables
+	// should actually work with promises, stores and simple observables
 	// should handle failed streams and render Failure element
 	// should render `null` for not specified components
 });
