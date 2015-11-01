@@ -18,6 +18,23 @@ Async declarative component-based (and other buzzwords) programming made easy.
 
 See more [here](http://rxmarbles.com/#combineLatest).
 
+## API
+
+### `Transmitter.create(ReactComponent, options)`
+
+TBD
+
+### `Transmitter.fromStore(store)`
+
+Creates an Observable from Store ([Flux](https://github.com/facebook/flux), [Redux](https://github.com/rackt/redux), etc). Store is an object that provides next API:
+
+ * `getState()` — returns current state of this store.
+ * `subscribe()` — adds a listener and returns `unsubscribe` function.
+
+### `Transmitter.fromPromise(promise)`
+
+See more [in RxJS docs](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/frompromise.md).
+
 ## Examples
 
 ```javascript
