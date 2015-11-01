@@ -18,11 +18,11 @@ function Container(Component, options) {
 	} = options;
 
 	const componentEnum = enumerate(Component);
-	const containerName = componentEnum.success.displayName || componentEnum.success.name;
+	const displayName = `${componentEnum.success.displayName || componentEnum.success.name}Container`;
 	const isRootContainer = options.hasOwnProperty('initialVariables');
 
 	return React.createClass({
-		displayName: `${containerName}Container`,
+		displayName,
 
 		propTypes: {
 			variables: PropTypes.object,
