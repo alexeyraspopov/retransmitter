@@ -9,7 +9,7 @@ export default Transmitter.create(ItemSearch, {
 			return Transmitter.fromStore(QueryStore);
 		},
 		onChange() {
-			return event => QueryStore.dispatch(QueryActions.changeQuery(event.target.value));
+			return event => QueryStore.dispatch(QueryActions.updateQuery(event.target.value));
 		}
 	}
 });
