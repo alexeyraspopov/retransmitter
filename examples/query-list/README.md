@@ -1,4 +1,4 @@
-# Query list
+# Query List
 
 React+Redux+Retransmitter
 
