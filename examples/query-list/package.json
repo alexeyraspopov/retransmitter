@@ -1,19 +1,19 @@
 {
   "name": "examples",
   "version": "0.0.1",
-  "description": "Container examples",
+  "description": "retransmitter examples",
   "main": "index.js",
   "scripts": {
     "watchify": "NODE_PATH=node_modules:. watchify -e index.js -t babelify -o bundle.js -dv",
     "start": "npm run watchify & http-server . -p 3000"
   },
-  "repository": "alexeyraspopov/container",
+  "repository": "alexeyraspopov/retransmitter",
   "author": "Alexey Raspopov",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/alexeyraspopov/container/issues"
+    "url": "https://github.com/alexeyraspopov/retransmitter/issues"
   },
-  "homepage": "https://github.com/alexeyraspopov/container#readme",
+  "homepage": "https://github.com/alexeyraspopov/retransmitter#readme",
   "devDependencies": {
     "babelify": "~6.4.0",
     "http-server": "~0.8.5",
