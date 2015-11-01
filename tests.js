@@ -1,10 +1,10 @@
 import React from 'react';
 import TestUtils from 'react/lib/ReactTestUtils';
-import Retransmitter from './index';
+import Transmitter from './index';
 import assert from 'assert';
 import sinon from 'sinon';
 
-describe('Retransmitter', () => {
+describe('Transmitter', () => {
 	// TODO: describe use cases
 	const Component = (props) => <div />;
 	const VALUE = 'value';
@@ -12,27 +12,27 @@ describe('Retransmitter', () => {
 	const SECOND_ACTION_TIMEOUT = 2;
 
 	it('should create React component', () => {
-		const Container = Retransmitter.create(Component, {});
+		const Container = Transmitter.create(Component, {});
 
 		assert.ok(TestUtils.isElement(<Container />), 'Container should be a React component');
 		assert.equal(Container.displayName, 'ComponentContainer', 'Container should have Component\'s name with suffix');
 	});
 
 	it('should create React component if enum is used', () => {
-		const Container = Retransmitter.create({success: Component}, {});
+		const Container = Transmitter.create({success: Component}, {});
 
 		assert.ok(TestUtils.isElement(<Container />), 'Container should be a React component');
 		assert.equal(Container.displayName, 'ComponentContainer', 'Container should have Component\'s name with suffix');
 	});
 
 	it('should raise an error if no components are specified', () => {
-		assert.throws(() => Retransmitter.create({success: null}, {}), /Success, Failure and Pending should be React components/);
-		assert.throws(() => Retransmitter.create({}, {}), /Success component should be specified/);
+		assert.throws(() => Transmitter.create({success: null}, {}), /Success, Failure and Pending should be React components/);
+		assert.throws(() => Transmitter.create({}, {}), /Success component should be specified/);
 	});
 
 	it('should render Pending component by default', () => {
 		const Spinner = () => <p>Loading...</p>;
-		const Container = Retransmitter.create({success: Component, pending: Spinner}, {});
+		const Container = Transmitter.create({success: Component, pending: Spinner}, {});
 		const ReactShallow = TestUtils.createRenderer();
 
 		ReactShallow.render(<Container />);
@@ -41,7 +41,7 @@ describe('Retransmitter', () => {
 	});
 
 	it('should render Success component with data fetched from fragments', (done) => {
-		const Container = Retransmitter.create(Component, {
+		const Container = Transmitter.create(Component, {
 			fragments: {
 				thing() {
 					return new Promise((resolve) => {
@@ -65,7 +65,7 @@ describe('Retransmitter', () => {
 
 	// waiting for https://github.com/facebook/react/pull/5247 being merged
 	xit('should immediately render Success component if fragments are passed via props', () => {
-		const Container = Retransmitter.create(Component, {
+		const Container = Transmitter.create(Component, {
 			fragments: {
 				thing() {
 					return new Promise((resolve) => {
