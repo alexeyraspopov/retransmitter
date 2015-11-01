@@ -138,7 +138,7 @@ function enumerate(target) {
 		invariant(isReactComponentEnum(target), 'Success, Failure and Pending should be React components');
 		invariant(helpers.isFunction(target.success), 'Success component should be specified');
 
-		return target;
+		return assign({success: EmptyComponent, pending: EmptyComponent, failure: EmptyComponent}, target);
 	}
 
 	return {success: target, pending: EmptyComponent, failure: EmptyComponent};
