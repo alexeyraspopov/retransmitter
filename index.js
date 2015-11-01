@@ -155,6 +155,10 @@ function fromEverything(object) {
 		return Observable.fromPromise(object);
 	}
 
+	if (helpers.isFunction(object)) {
+		return Observable.just(object);
+	}
+
 	// assume that fragmentContainer is Observable by default
 	return object;
 }
