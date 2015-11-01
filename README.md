@@ -126,8 +126,8 @@ When `<ItemsListContainer />` is added to the view `pending` element will be ren
 ## Support
 
  - [x] Promises
- - [x] Observables (instances should have `subscribe()` that may return `{ dispose() }`)
- - [x] Stores (instances should have `subscribe()` and `getState()`)
+ - [x] Observables
+ - [x] Stores
  - [ ] CSP channels
  - [ ] Relay
  - [ ] Falcor
