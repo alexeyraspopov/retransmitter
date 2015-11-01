@@ -9,7 +9,7 @@ describe('Transmitter', () => {
 	const Component = (props) => <div />;
 	const VALUE = 'value';
 	const FIRST_ACTION_TIMEOUT = 1;
-	const SECOND_ACTION_TIMEOUT = 2;
+	const SECOND_ACTION_TIMEOUT = 10;
 
 	it('should create React component', () => {
 		const Container = Transmitter.create(Component, {});
