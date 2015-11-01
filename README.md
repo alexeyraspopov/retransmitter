@@ -1,4 +1,4 @@
-# Transmitter ![](https://travis-ci.org/alexeyraspopov/container.svg)
+# Transmitter
 
 Async declarative component-based (and other buzzwords) programming made easy.
 
