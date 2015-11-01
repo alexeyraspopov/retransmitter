@@ -159,7 +159,7 @@ function fromEverything(object) {
 		return Observable.just(object);
 	}
 
-	// assume that fragmentContainer is Observable by default
+	// assume that `object` is Observable by default
 	return object;
 }
 
