@@ -65,7 +65,7 @@ describe('Transmitter', () => {
 			const Output = ReactShallow.getRenderOutput();
 
 			assert.ok(TestUtils.isElementOfType(Output, Component), 'Success component should be rendered');
-			assert.deepEqual(Output.props, { thing: VALUE }, 'Component should be rendered with data fetched via fragments');
+			assert.deepEqual(Output.props, {thing: VALUE}, 'Component should be rendered with data fetched via fragments');
 			done();
 		}, SECOND_ACTION_TIMEOUT);
 	});
@@ -84,7 +84,7 @@ describe('Transmitter', () => {
 	it('should use initial variables if actual are not specified', () => {
 		const thingFragment = sinon.stub().returns(Promise.resolve(VALUE));
 		const Container = Transmitter.create(Component, {
-			initialVariables: { a: VALUE },
+			initialVariables: {a: VALUE},
 			fragments: {thing: thingFragment}
 		});
 		const variables = {id: VALUE};
@@ -123,7 +123,7 @@ describe('Transmitter', () => {
 
 		assert.ok(!thingFragment.called, 'Fragment should not be called');
 		assert.ok(TestUtils.isElementOfType(RenderOutput, Component), 'Success component should be rendered');
-		assert.deepEqual(RenderOutput.props, { thing: VALUE }, 'Component should be rendered with data fetched via fragments');
+		assert.deepEqual(RenderOutput.props, {thing: VALUE}, 'Component should be rendered with data fetched via fragments');
 	});
 
 	xit('should handle failed streams and render Failure element', () => {
