@@ -9,6 +9,11 @@ describe('Transmitter', () => {
 	const VALUE = 'value';
 	const FIRST_ACTION_TIMEOUT = 1;
 	const SECOND_ACTION_TIMEOUT = 10;
+	const ShallowRender = (view) => {
+		const ReactShallow = TestUtils.createRenderer();
+		ReactShallow.render(view);
+		return ReactShallow.getRenderOutput();
+	};
 
 	it('should create React component', () => {
 		const Container = Transmitter.create(Component, {});
@@ -32,11 +37,9 @@ describe('Transmitter', () => {
 	it('should render Pending component by default', () => {
 		const Spinner = () => <p>Loading...</p>;
 		const Container = Transmitter.create({success: Component, pending: Spinner}, {});
-		const ReactShallow = TestUtils.createRenderer();
+		const RenderOutput = ShallowRender(<Container />);
 
-		ReactShallow.render(<Container />);
-
-		assert.ok(TestUtils.isElementOfType(ReactShallow.getRenderOutput(), Spinner), 'Pending component should be rendered');
+		assert.ok(TestUtils.isElementOfType(RenderOutput, Spinner), 'Pending component should be rendered');
 	});
 
 	it('should render Success component with data fetched from fragments', (done) => {
@@ -62,6 +65,37 @@ describe('Transmitter', () => {
 		}, SECOND_ACTION_TIMEOUT);
 	});
 
+	it('should call fragments with passed variables', () => {
+		const thingFragment = sinon.stub().returns(Promise.resolve(VALUE));
+		const Container = Transmitter.create(Component, {
+			fragments: {thing: thingFragment}
+		});
+		const variables = {id: VALUE};
+		const RenderOutput = ShallowRender(<Container variables={variables} />);
+
+		assert.ok(thingFragment.calledWith(variables), 'Fragment should be called with passed variables');
+	});
+
+	it('should use initial variables if actual are not specified', () => {
+		const thingFragment = sinon.stub().returns(Promise.resolve(VALUE));
+		const Container = Transmitter.create(Component, {
+			initialVariables: { a: VALUE },
+			fragments: {thing: thingFragment}
+		});
+		const variables = {id: VALUE};
+		const RenderOutput = ShallowRender(<Container variables={variables} />);
+
+		assert.ok(thingFragment.calledWith({a: VALUE, id: VALUE}), 'Fragment should be called with passed variables mixed with initial variables');
+	});
+
+	xit('should dispose subscriptions after unmount', () => {
+		// TODO: implement this test
+	});
+
+	xit('should actually work with stores and simple observables', () => {
+		// TODO: implement this test
+	});
+
 	// waiting for https://github.com/facebook/react/pull/5247 being merged
 	xit('should immediately render Success component if fragments are passed via props', () => {
 		const thingFragment = sinon.stub().returns(new Promise((resolve) => {
@@ -70,40 +104,11 @@ describe('Transmitter', () => {
 		const Container = Transmitter.create(Component, {
 			fragments: {thing: thingFragment}
 		});
-		const ReactShallow = TestUtils.createRenderer();
-
-		ReactShallow.render(<Container thing={VALUE} />);
-
-		const Output = ReactShallow.getRenderOutput();
+		const RenderOutput = ShallowRender(<Container thing={VALUE} />)
 
 		assert.ok(!thingFragment.called, 'Fragment should not be called');
-		assert.ok(TestUtils.isElementOfType(Output, Component), 'Success component should be rendered');
-		assert.deepEqual(Output.props, { thing: VALUE }, 'Component should be rendered with data fetched via fragments');
-	});
-
-	it('should call fragments with passed variables', () => {
-		const thingFragment = sinon.stub().returns(Promise.resolve(VALUE));
-		const Container = Transmitter.create(Component, {
-			fragments: {thing: thingFragment}
-		});
-		const ReactShallow = TestUtils.createRenderer();
-		const variables = {id: VALUE};
-
-		ReactShallow.render(<Container variables={variables} />);
-
-		assert.ok(thingFragment.calledWith(variables), 'Fragment should be called with passed variables');
-	});
-
-	xit('should use initial variables if actual are not specified', () => {
-		// TODO: implement this test
-	});
-
-	xit('should dispose subscriptions after unmount', () => {
-		// TODO: implement this test
-	});
-
-	xit('should actually work with promises, stores and simple observables', () => {
-		// TODO: implement this test
+		assert.ok(TestUtils.isElementOfType(RenderOutput, Component), 'Success component should be rendered');
+		assert.deepEqual(RenderOutput.props, { thing: VALUE }, 'Component should be rendered with data fetched via fragments');
 	});
 
 	xit('should handle failed streams and render Failure element', () => {
