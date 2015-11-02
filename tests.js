@@ -81,8 +81,17 @@ describe('Transmitter', () => {
 		assert.deepEqual(Output.props, { thing: VALUE }, 'Component should be rendered with data fetched via fragments');
 	});
 
-	xit('should call fragments with passed variables', () => {
-		// TODO: implement this test
+	it('should call fragments with passed variables', () => {
+		const thingFragment = sinon.stub().returns(Promise.resolve(VALUE));
+		const Container = Transmitter.create(Component, {
+			fragments: {thing: thingFragment}
+		});
+		const ReactShallow = TestUtils.createRenderer();
+		const variables = {id: VALUE};
+
+		ReactShallow.render(<Container variables={variables} />);
+
+		assert.ok(thingFragment.calledWith(variables), 'Fragment should be called with passed variables');
 	});
 
 	xit('should use initial variables if actual are not specified', () => {
