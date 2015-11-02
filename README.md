@@ -53,6 +53,8 @@ Creates an Observable from Store ([Flux](https://github.com/facebook/flux), [Red
 
 ### `Transmitter.fromPromise(promise)`
 
+This method is not required for using. If you're using native Promises you can just return them in fragments.
+
 See more [in RxJS docs](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/frompromise.md).
 
 ### `Transmitter.fromValue(value)`
