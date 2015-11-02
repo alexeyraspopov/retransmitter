@@ -141,4 +141,16 @@ describe('Transmitter', () => {
 	xit('should abort fetching if onAbort was called', () => {
 		// TODO: implement this test
 	});
+
+	xit('should use custom `shouldContainerUpdate` hook', () => {
+		// TODO: implement this test
+	});
+
+	xit('should be able to get child fragment', () => {
+		// TODO: implement this test
+	});
+
+	xit('should pass functions from fragments', () => {
+		// TODO: implement this test
+	});
 });
