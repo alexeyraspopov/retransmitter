@@ -34,7 +34,9 @@
   "devDependencies": {
     "babel": "~5.8.23",
     "istanbul": "~0.4.0",
+    "jsdom": "~7.0.2",
     "mocha": "~2.3.3",
+    "mocha-jsdom": "~1.0.0",
     "sinon": "~1.17.2"
   }
 }
