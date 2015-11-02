@@ -53,8 +53,8 @@ function Container(Component, options) {
 			this.setState({status: 'success', fragments: combinedFragments});
 		},
 
-		failure(error) {
-			const errorInstance = {type: 'FETCH_FAILED', error};
+		failure(error, type = 'FETCH_FAILED') {
+			const errorInstance = {type, error};
 
 			this.setState({status: 'failure', error: errorInstance});
 		},
@@ -94,6 +94,11 @@ function Container(Component, options) {
 			this.subscription = this.fetch(this.props.variables);
 		},
 
+		cancel() {
+			this.subscription.dispose();
+			this.failure(null, 'FETCH_CANCELED');
+		},
+
 		componentWillMount() {
 			this.subscription = this.fetch(this.props.variables);
 		},
@@ -112,6 +117,7 @@ function Container(Component, options) {
 		render() {
 			const {fragments, error, status} = this.state;
 			const onRetry = () => this.refetch();
+			const onCancel = () => this.cancel();
 
 			switch (status) {
 			case 'success':
@@ -122,7 +128,7 @@ function Container(Component, options) {
 				// falls through
 			default:
 				// TODO: pass onCancel
-				return React.createElement(componentEnum.pending, this.props);
+				return React.createElement(componentEnum.pending, assign({onCancel}, this.props);
 			}
 		},
 	});
