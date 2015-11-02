@@ -1,6 +1,6 @@
-import {createStore as Store} from 'redux';
+import Redux from 'redux';
 
-export default Store(QueryState);
+export default Redux.createStore(QueryState);
 
 function QueryState(query = '', action) {
 	switch (action.type) {
