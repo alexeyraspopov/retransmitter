@@ -91,4 +91,6 @@ describe('Transmitter', () => {
 	// should actually work with promises, stores and simple observables
 	// should handle failed streams and render Failure element
 	// should render `null` for not specified components
+	// should restart fetching if onRetry was called
+	// should cancel fetching if onCancel was called
 });

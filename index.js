@@ -127,7 +127,6 @@ function Container(Component, options) {
 			case 'pending':
 				// falls through
 			default:
-				// TODO: pass onCancel
 				return React.createElement(componentEnum.pending, assign({onCancel}, this.props);
 			}
 		},
