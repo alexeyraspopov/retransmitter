@@ -133,9 +133,9 @@ function Container(Component, options) {
 	});
 }
 
-function EmptyComponent() {
-	return null;
-}
+const EmptyComponent = React.createClass({
+	render() { return null; }
+});
 
 function wrapFragment(name, value) {
 	return {[name]: value};
