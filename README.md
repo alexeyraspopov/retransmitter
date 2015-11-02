@@ -42,7 +42,7 @@ See more [here](http://rxmarbles.com/#combineLatest).
  * `options` — object
    * `initialVariables` **(optional)**
    * `fragments`
-   * `shouldContainerUpdate` **(optional)**
+   * `shouldContainerUpdate()` **(optional)**
 
 ### `Transmitter.fromStore(store)`
 
