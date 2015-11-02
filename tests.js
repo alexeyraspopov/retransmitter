@@ -84,12 +84,35 @@ describe('Transmitter', () => {
 		assert.deepEqual(Output.props, { thing: VALUE }, 'Component should be rendered with data fetched via fragments');
 	});
 
-	// should call fragments with passed variables
-	// should use initial variables if actual are not specified
-	// should dispose subscriptions after unmount
-	// should actually work with promises, stores and simple observables
-	// should handle failed streams and render Failure element
-	// should render `null` for not specified components
-	// should restart fetching if onRetry was called
-	// should cancel fetching if onCancel was called
+	xit('should call fragments with passed variables', () => {
+		// TODO: implement this test
+	});
+
+	xit('should use initial variables if actual are not specified', () => {
+		// TODO: implement this test
+	});
+
+	xit('should dispose subscriptions after unmount', () => {
+		// TODO: implement this test
+	});
+
+	xit('should actually work with promises, stores and simple observables', () => {
+		// TODO: implement this test
+	});
+
+	xit('should handle failed streams and render Failure element', () => {
+		// TODO: implement this test
+	});
+
+	xit('should render `null` for not specified components', () => {
+		// TODO: implement this test
+	});
+
+	xit('should restart fetching if onRetry was called', () => {
+		// TODO: implement this test
+	});
+
+	xit('should abort fetching if onAbort was called', () => {
+		// TODO: implement this test
+	});
 });
