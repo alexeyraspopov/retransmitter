@@ -53,7 +53,7 @@ function Container(Component, options) {
 			this.setState({status: 'success', fragments: combinedFragments});
 		},
 
-		failure(error, type = 'FETCH_FAILED') {
+		failure(error, type) {
 			const errorInstance = {type, error};
 
 			this.setState({status: 'failure', error: errorInstance});
@@ -85,7 +85,7 @@ function Container(Component, options) {
 			return Observable.combineLatest(streams)
 				.subscribe(
 					results => this.success(results),
-					error => this.failure(error)
+					error => this.failure(error, 'FETCH_FAILED')
 				);
 		},
 
