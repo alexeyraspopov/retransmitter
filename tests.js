@@ -1,10 +1,15 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import TestUtils from 'react/lib/ReactTestUtils';
+import {Observable} from 'rx';
 import Transmitter from './index';
+import jsdom from 'mocha-jsdom';
 import assert from 'assert';
 import sinon from 'sinon';
 
 describe('Transmitter', () => {
+	jsdom();
+
 	const Component = (props) => <div />;
 	const VALUE = 'value';
 	const FIRST_ACTION_TIMEOUT = 1;
@@ -88,8 +93,18 @@ describe('Transmitter', () => {
 		assert.ok(thingFragment.calledWith({a: VALUE, id: VALUE}), 'Fragment should be called with passed variables mixed with initial variables');
 	});
 
-	xit('should dispose subscriptions after unmount', () => {
-		// TODO: implement this test
+	it('should dispose subscriptions after unmount', () => {
+		const disposeStub = sinon.spy();
+		const Disposable = Observable.create(observer => ({dispose: disposeStub}));
+		const Container = Transmitter.create(Component, {
+			fragments: {thing: () => Disposable}
+		});
+		const root = document.createElement('div');
+
+		ReactDOM.render(<Container />, root);
+		ReactDOM.unmountComponentAtNode(root);
+
+		assert.ok(disposeStub.called, 'Dispose method should be called if Container was unmounted');
 	});
 
 	xit('should actually work with stores and simple observables', () => {
