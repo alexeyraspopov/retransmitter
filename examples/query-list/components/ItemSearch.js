@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function ItemSearch({query, onChange}) {
-	return <input type="text" value={query} onChange={onChange} />;
+	return <input type="text" placeholder="Search items..." value={query} onChange={onChange} />;
 }
