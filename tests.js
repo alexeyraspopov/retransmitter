@@ -5,7 +5,6 @@ import assert from 'assert';
 import sinon from 'sinon';
 
 describe('Transmitter', () => {
-	// TODO: describe use cases
 	const Component = (props) => <div />;
 	const VALUE = 'value';
 	const FIRST_ACTION_TIMEOUT = 1;
