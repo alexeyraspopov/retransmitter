@@ -2,6 +2,8 @@
 
 Async declarative component-based (and other buzzwords) programming made easy.
 
+Inspired by [Relay](https://facebook.github.io/relay). An attempt to create unified container solution.
+
 ***NB***: For now Transmitter depends on [Rx](https://github.com/Reactive-Extensions/RxJS) (used as peer dependency).
 
 ## Intro
