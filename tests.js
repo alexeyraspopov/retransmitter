@@ -64,14 +64,11 @@ describe('Transmitter', () => {
 
 	// waiting for https://github.com/facebook/react/pull/5247 being merged
 	xit('should immediately render Success component if fragments are passed via props', () => {
+		const thingFragment = sinon.stub().returns(new Promise((resolve) => {
+			setTimeout(resolve, FIRST_ACTION_TIMEOUT, VALUE);
+		}));
 		const Container = Transmitter.create(Component, {
-			fragments: {
-				thing() {
-					return new Promise((resolve) => {
-						setTimeout(resolve, FIRST_ACTION_TIMEOUT, VALUE);
-					});
-				}
-			}
+			fragments: {thing: thingFragment}
 		});
 		const ReactShallow = TestUtils.createRenderer();
 
@@ -79,7 +76,7 @@ describe('Transmitter', () => {
 
 		const Output = ReactShallow.getRenderOutput();
 
-		// TODO: check fragment that should not be called
+		assert.ok(!thingFragment.called, 'Fragment should not be called');
 		assert.ok(TestUtils.isElementOfType(Output, Component), 'Success component should be rendered');
 		assert.deepEqual(Output.props, { thing: VALUE }, 'Component should be rendered with data fetched via fragments');
 	});
