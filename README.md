@@ -36,9 +36,13 @@ See more [here](http://rxmarbles.com/#combineLatest).
 
 ## API
 
-### `Transmitter.create(ReactComponent, options)`
+### `Transmitter.create(Component, options)`
 
-TBD
+ * `Component` — React Component or enum `{pending, success, failure}` of React Components.
+ * `options` — object
+   * `initialVariables` **(optional)**
+   * `fragments`
+   * `shouldContainerUpdate` **(optional)**
 
 ### `Transmitter.fromStore(store)`
 
