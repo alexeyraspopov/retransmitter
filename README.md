@@ -120,7 +120,7 @@ ItemsListContainer = Transmitter.create({
 
 When `<ItemsListContainer />` is added to the view `pending` component will be rendered at first. `pending` component will be rendered with props:
 
- * `onCancel` — the callback that used as event hook and dispose all fragments fetching processes.
+ * `onAbort` — the callback that used as event hook and dispose all fragments fetching processes.
 
 After loading is finished `success` or `failure` component will be rendered (depends on results). `failure` component will receive next props:
 

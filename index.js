@@ -94,9 +94,9 @@ function Container(Component, options) {
 			this.subscription = this.fetch(this.props.variables);
 		},
 
-		cancel() {
+		abort() {
 			this.subscription.dispose();
-			this.failure(null, 'FETCH_CANCELED');
+			this.failure(null, 'FETCH_ABORTED');
 		},
 
 		componentWillMount() {
@@ -117,7 +117,7 @@ function Container(Component, options) {
 		render() {
 			const {fragments, error, status} = this.state;
 			const onRetry = () => this.refetch();
-			const onCancel = () => this.cancel();
+			const onAbort = () => this.abort();
 
 			switch (status) {
 			case 'success':
@@ -127,7 +127,7 @@ function Container(Component, options) {
 			case 'pending':
 				// falls through
 			default:
-				return React.createElement(componentEnum.pending, assign({onCancel}, this.props));
+				return React.createElement(componentEnum.pending, assign({onAbort}, this.props));
 			}
 		},
 	});
