@@ -181,7 +181,7 @@ function fromStore(store) {
 		const pushState = () => observer.onNext(store.getState());
 		const unsubscribe = store.subscribe(pushState);
 
-		invariant(typeof unsubscribe === 'function', 'Subscribe method should return a function which removes listener when called');
+		invariant(typeof unsubscribe === 'function', 'Subscribe method should return a function which removes change listener when called');
 
 		return {dispose: unsubscribe};
 	}).startWith(store.getState());
