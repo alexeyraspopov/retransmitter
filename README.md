@@ -145,7 +145,7 @@ After loading is finished `success` or `failure` component will be rendered (dep
 
  - [x] Promises
  - [x] Observables
- - [x] Stores (Flux, Redux)
  - [x] Falcor (since it uses Promises and Observables)
+ - [x] Stores (Flux, Redux) (See [`Transmitter.fromStore()`](#transmitterfromstorestore))
  - [ ] CSP channels
  - [ ] Relay
