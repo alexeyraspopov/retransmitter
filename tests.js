@@ -24,14 +24,14 @@ describe('Transmitter', () => {
 		const Container = Transmitter.create(Component, {});
 
 		assert.ok(TestUtils.isElement(<Container />), 'Container should be a React component');
-		assert.equal(Container.displayName, 'ComponentContainer', 'Container should have Component\'s name with suffix');
+		assert.equal(Container.displayName, 'Transmitter(Component)', 'Container should have Component\'s name with suffix');
 	});
 
 	it('should create React component if enum is used', () => {
 		const Container = Transmitter.create({success: Component}, {});
 
 		assert.ok(TestUtils.isElement(<Container />), 'Container should be a React component');
-		assert.equal(Container.displayName, 'ComponentContainer', 'Container should have Component\'s name with suffix');
+		assert.equal(Container.displayName, 'Transmitter(Component)', 'Container should have Component\'s name with suffix');
 	});
 
 	it('should raise an error if no components are specified', () => {

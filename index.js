@@ -23,7 +23,7 @@ function Container(Component, options) {
 	} = options;
 
 	const componentEnum = enumerate(Component);
-	const displayName = `${componentEnum.success.displayName || componentEnum.success.name}Container`;
+	const displayName = `Transmitter(${componentEnum.success.displayName || componentEnum.success.name})`;
 	const isRootContainer = options.hasOwnProperty('initialVariables');
 
 	return React.createClass({
