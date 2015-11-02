@@ -93,6 +93,10 @@ describe('Transmitter', () => {
 		assert.ok(thingFragment.calledWith({a: VALUE, id: VALUE}), 'Fragment should be called with passed variables mixed with initial variables');
 	});
 
+	xit('should actually work with stores and simple observables', () => {
+		// TODO: implement this test
+	});
+
 	it('should dispose subscriptions after unmount', () => {
 		const disposeStub = sinon.spy();
 		const Disposable = Observable.create(observer => ({dispose: disposeStub}));
@@ -105,10 +109,6 @@ describe('Transmitter', () => {
 		ReactDOM.unmountComponentAtNode(root);
 
 		assert.ok(disposeStub.called, 'Dispose method should be called if Container was unmounted');
-	});
-
-	xit('should actually work with stores and simple observables', () => {
-		// TODO: implement this test
 	});
 
 	// waiting for https://github.com/facebook/react/pull/5247 being merged
