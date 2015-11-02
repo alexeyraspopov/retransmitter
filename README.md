@@ -118,10 +118,14 @@ ItemsListContainer = Transmitter.create({
 ------{items, query}---{items, query2}--|> (result that will be passed to ItemsList)
 ```
 
-When `<ItemsListContainer />` is added to the view `pending` element will be rendered at first. After loading is finished `success` or `failure` element will be rendered (depends on results). `failure` element will receive next props:
+When `<ItemsListContainer />` is added to the view `pending` component will be rendered at first. `pending` component will be rendered with props:
 
- * `error` — the error instance that will be received in failed getter
- * `onRetry` — the callback that can be attached as event hook and will restart data fetching
+ * `onCancel` — the callback that used as event hook and dispose all fragments fetching processes.
+
+After loading is finished `success` or `failure` component will be rendered (depends on results). `failure` component will receive next props:
+
+ * `error` — the error instance that will be received in failed getter.
+ * `onRetry` — the callback that can be attached as event hook and will restart data fetching.
 
 ## Support
 
