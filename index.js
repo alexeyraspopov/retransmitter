@@ -3,11 +3,16 @@ import {Observable, helpers} from 'rx';
 import assign from 'object-assign';
 import invariant from 'invariant';
 
+const FETCH_FAILED = 'FETCH_FAILED';
+const FETCH_ABORTED = 'FETCH_ABORTED';
+
 export default {
 	create: Container,
 	fromPromise: Observable.fromPromise,
 	fromValue: Observable.just,
 	fromStore,
+	FETCH_FAILED,
+	FETCH_ABORTED,
 };
 
 function Container(Component, options) {
@@ -85,7 +90,7 @@ function Container(Component, options) {
 			return Observable.combineLatest(streams)
 				.subscribe(
 					results => this.success(results),
-					error => this.failure(error, 'FETCH_FAILED')
+					error => this.failure(error, FETCH_FAILED)
 				);
 		},
 
@@ -96,7 +101,7 @@ function Container(Component, options) {
 
 		abort() {
 			this.subscription.dispose();
-			this.failure(null, 'FETCH_ABORTED');
+			this.failure(null, FETCH_ABORTED);
 		},
 
 		componentWillMount() {
