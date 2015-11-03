@@ -1,6 +1,6 @@
 {
   "name": "retransmitter",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Async-friendly stateful React containers",
   "main": "bundle.js",
   "scripts": {
