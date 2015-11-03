@@ -48,6 +48,7 @@ describe('Transmitter', () => {
 		const RenderOutput = ShallowRender(<Container />);
 
 		assert.ok(TestUtils.isElementOfType(RenderOutput, Spinner), 'Pending component should be rendered');
+		assert.ok(typeof RenderOutput.props.onAbort === 'function', 'onAbort callback should be passed as prop');
 	});
 
 	it('should render Success component with data fetched from fragments', (done) => {
