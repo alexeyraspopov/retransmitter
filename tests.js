@@ -48,14 +48,11 @@ describe('Transmitter', () => {
 	});
 
 	it('should render Success component with data fetched from fragments', (done) => {
+		const thingFragment = sinon.stub().returns(new Promise((resolve) => {
+			setTimeout(resolve, FIRST_ACTION_TIMEOUT, VALUE);
+		}));
 		const Container = Transmitter.create(Component, {
-			fragments: {
-				thing() {
-					return new Promise((resolve) => {
-						setTimeout(resolve, FIRST_ACTION_TIMEOUT, VALUE);
-					});
-				}
-			}
+			fragments: {thing: thingFragment}
 		});
 		const ReactShallow = TestUtils.createRenderer();
 
