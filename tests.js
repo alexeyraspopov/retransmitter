@@ -125,6 +125,20 @@ describe('Transmitter', () => {
 		assert.ok(RootContainer.isRootContainer, 'Container without variables should be root');
 	});
 
+	it('should provide access to fragments out of the container', () => {
+		const promise = Promise.resolve(VALUE);
+		const thingFragment = sinon.stub().returns(promise);
+		const variables = {id: VALUE};
+		const Container = Transmitter.create(Component, {
+			fragments: {thing: thingFragment}
+		});
+		const fragment = Container.getFragment('thing', variables);
+
+		assert.throws(() => Container.getFragment('invalid'), /Fragment invalid of Transmitter\(Component\) doesn't exist/);
+		assert.ok(thingFragment.calledWith(variables), 'Fragment should be called with passed variables');
+		assert.equal(fragment, promise, 'External fragment call should return original value');
+	});
+
 	xit('should work with simple observables', () => {
 		// TODO: implement this test
 	});
