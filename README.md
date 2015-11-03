@@ -24,10 +24,10 @@ Require the lib in your code:
 import Transmitter from 'retransmitter';
 ```
 
-***NB***: If you're NPM3 user please make sure you have [these dependencies](https://github.com/alexeyraspopov/retransmitter/blob/bc005d8da250d89037bf2b15d672c1232fbc7e47/package.json#L28-L32) installed. I'll make these dependencies as own dependencies after NPM3 will be used widely.
+***NB***: If you're NPM3 user please make sure you have [these dependencies](https://github.com/alexeyraspopov/retransmitter/blob/06e1fe52e6ffb4e409bd14a6adf5205ca9b1f7c1/package.json#L32-L34) installed. I'll make these dependencies as own dependencies after NPM3 will be used widely.
 
 ```bash
-npm install --save react react-dom rx invariant object-assign
+npm install --save react react-dom rx
 ```
 
 ## How it works
