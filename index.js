@@ -113,7 +113,7 @@ function Container(Component, options) {
 		},
 
 		componentWillReceiveProps(nextProps) {
-			if (shouldContainerUpdate.call(this, nextProps)) {
+			if (isRootContainer && shouldContainerUpdate.call(this, nextProps)) {
 				this.pending();
 				this.subscription = this.fetch(nextProps.variables);
 			}
