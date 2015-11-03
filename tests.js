@@ -113,7 +113,11 @@ describe('Transmitter', () => {
 		assert.ok(thingFragment.calledWith({a: VALUE, id: VALUE}), 'Fragment should be called with passed variables mixed with initial variables');
 	});
 
-	xit('should actually work with stores and simple observables', () => {
+	xit('should work with simple observables', () => {
+		// TODO: implement this test
+	});
+
+	xit('should work with stores', () => {
 		// TODO: implement this test
 	});
 
