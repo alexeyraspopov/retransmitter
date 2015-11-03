@@ -11,7 +11,9 @@ describe('Transmitter', () => {
 	jsdom();
 
 	const Component = (props) => <div />;
+	const FailureComponent = (props) => <div />;
 	const VALUE = 'value';
+	const ERROR = new Error('Something happened');
 	const FIRST_ACTION_TIMEOUT = 1;
 	const SECOND_ACTION_TIMEOUT = 10;
 	const ShallowRender = (view) => {
@@ -63,6 +65,27 @@ describe('Transmitter', () => {
 
 			assert.ok(TestUtils.isElementOfType(Output, Component), 'Success component should be rendered');
 			assert.deepEqual(Output.props, {thing: VALUE}, 'Component should be rendered with data fetched via fragments');
+			done();
+		}, SECOND_ACTION_TIMEOUT);
+	});
+
+	it('should render Failure component with error raised from fragments', (done) => {
+		const thingFragment = sinon.stub().returns(new Promise((_, reject) => {
+			setTimeout(reject, FIRST_ACTION_TIMEOUT, ERROR);
+		}));
+		const Container = Transmitter.create({success: Component, failure: FailureComponent}, {
+			fragments: {thing: thingFragment}
+		});
+		const ReactShallow = TestUtils.createRenderer();
+
+		ReactShallow.render(<Container />);
+
+		setTimeout(() => {
+			const Output = ReactShallow.getRenderOutput();
+
+			assert.ok(TestUtils.isElementOfType(Output, FailureComponent), 'Failure component should be rendered');
+			assert.deepEqual(Output.props.error, {type: Transmitter.FETCH_FAILED, error: ERROR}, 'Component should be rendered with error raised via fragments');
+			assert.ok(typeof Output.props.onRetry === 'function', 'onRetry callback should be passed as prop');
 			done();
 		}, SECOND_ACTION_TIMEOUT);
 	});
