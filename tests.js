@@ -113,6 +113,16 @@ describe('Transmitter', () => {
 		assert.ok(thingFragment.calledWith({a: VALUE, id: VALUE}), 'Fragment should be called with passed variables mixed with initial variables');
 	});
 
+	it('should be root container if initial variables are passed', () => {
+		const Container = Transmitter.create(Component, {});
+		const RootContainer = Transmitter.create(Component, {
+			initialVariables: {thing: null}
+		});
+
+		assert.ok(!Container.isRootContainer, 'Container without variables should not be root');
+		assert.ok(RootContainer.isRootContainer, 'Container without variables should be root');
+	})
+
 	xit('should work with simple observables', () => {
 		// TODO: implement this test
 	});
