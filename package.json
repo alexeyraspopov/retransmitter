@@ -24,9 +24,11 @@
     "url": "https://github.com/alexeyraspopov/retransmitter/issues"
   },
   "homepage": "https://github.com/alexeyraspopov/retransmitter#readme",
-  "peerDependencies": {
+  "dependencies": {
     "invariant": ">1",
-    "object-assign": "*",
+    "object-assign": "*"
+  },
+  "peerDependencies": {
     "react": "0.14.x",
     "react-dom": "0.14.x",
     "rx": "~4.0.6"
