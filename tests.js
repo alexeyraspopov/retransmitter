@@ -190,8 +190,17 @@ describe('Transmitter', () => {
 		// TODO: implement this test
 	});
 
-	xit('should render `null` for not specified components', () => {
-		// TODO: implement this test
+	it('should render `null` for not specified components', () => {
+		const thingFragment = sinon.stub().returns(new Promise((resolve) => {
+			setTimeout(resolve, FIRST_ACTION_TIMEOUT, VALUE);
+		}));
+		const Container = Transmitter.create(Component, {
+			fragments: {thing: thingFragment}
+		});
+		const RenderOutput = ShallowRender(<Container />);
+		const PendingOutput = ShallowRender(<RenderOutput.type />);
+
+		assert.equal(PendingOutput, null, 'Pending element should be `null` if not specified');
 	});
 
 	xit('should restart fetching if onRetry was called', () => {
