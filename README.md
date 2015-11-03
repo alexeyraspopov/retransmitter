@@ -122,6 +122,9 @@ ItemsListContainer = Transmitter.create({
 	},
 	query() {
 		return Transmitter.fromStore(QueryStore);
+	},
+	onSelect() {
+		return ItemsActions.selectItem;
 	}
 });
 ```
