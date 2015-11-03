@@ -98,15 +98,15 @@ describe('Transmitter', () => {
 	});
 
 	it('should dispose subscriptions after unmount', () => {
+		const RENDER_ROOT = document.createElement('div');
 		const disposeStub = sinon.spy();
 		const Disposable = Observable.create(observer => ({dispose: disposeStub}));
 		const Container = Transmitter.create(Component, {
 			fragments: {thing: () => Disposable}
 		});
-		const root = document.createElement('div');
 
-		ReactDOM.render(<Container />, root);
-		ReactDOM.unmountComponentAtNode(root);
+		ReactDOM.render(<Container />, RENDER_ROOT);
+		ReactDOM.unmountComponentAtNode(RENDER_ROOT);
 
 		assert.ok(disposeStub.called, 'Dispose method should be called if Container was unmounted');
 	});
