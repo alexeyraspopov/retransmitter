@@ -120,9 +120,10 @@ describe('Transmitter', () => {
 			initialVariables: {thing: null}
 		});
 
+		assert.ok(Container.hasOwnProperty('isRootContainer'), 'Container should have `isRootContainer` flag');
 		assert.ok(!Container.isRootContainer, 'Container without variables should not be root');
 		assert.ok(RootContainer.isRootContainer, 'Container without variables should be root');
-	})
+	});
 
 	xit('should work with simple observables', () => {
 		// TODO: implement this test
