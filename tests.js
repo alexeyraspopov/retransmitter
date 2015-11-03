@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react/lib/ReactTestUtils';
+import Redux from 'redux';
 import {Observable} from 'rx';
 import Transmitter from './index';
 import jsdom from 'mocha-jsdom';
@@ -127,8 +128,18 @@ describe('Transmitter', () => {
 		// TODO: implement this test
 	});
 
+	// waiting for https://github.com/facebook/react/pull/5247 being merged
 	xit('should work with stores', () => {
-		// TODO: implement this test
+		const INITIAL_STATE = 0;
+		const StateReduce = (state = INITIAL_STATE, action) => state + action.value;
+		const Store = Redux.createStore(StateReduce);
+		const Container = Transmitter.create(Component, {
+			fragments: {thing: () => Transmitter.fromStore(Store)}
+		});
+		const RenderOutput = ShallowRender(<Container />);
+
+		assert.equal(RenderOutput.props.thing, INITIAL_STATE, 'Container should be rendered with initial state of the store');
+		// TODO: need more asserts
 	});
 
 	it('should dispose subscriptions after unmount', () => {
