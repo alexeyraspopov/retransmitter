@@ -38,7 +38,7 @@ npm install --save react react-dom rx
 ----{0, 1}--------------------|>
 ```
 
-See more [here](http://rxmarbles.com/#combineLatest).
+Just `combineLatest` operator magic. See more [here](http://reactivex.io/documentation/operators/combinelatest.html).
 
 ## API
 
