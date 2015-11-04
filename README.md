@@ -15,6 +15,12 @@ Inspired by [Relay](https://facebook.github.io/relay). An attempt to create unif
  5. Information source
  6. Container and reusability
 
+Let's treat UI as pure function of data.
+
+```javascript
+View = (Data) => UI;
+```
+
 ```
 ┌─ Route ──────────────────┐
 │                          │
