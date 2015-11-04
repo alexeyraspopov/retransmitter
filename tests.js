@@ -42,6 +42,10 @@ describe('Transmitter', () => {
 		assert.throws(() => Transmitter.create({}, {fragments: {}}), /Success component should be specified/);
 	});
 
+	it('should raise an error if fragments are not specified', () => {
+		assert.throws(() => Transmitter.create(Component, {}), /Fragments are not specified/);
+	});
+
 	it('should render Pending component by default', () => {
 		const Spinner = () => <p>Loading...</p>;
 		const Container = Transmitter.create({success: Component, pending: Spinner}, {fragments: {}});
