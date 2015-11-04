@@ -42,12 +42,6 @@ npm install --save react react-dom rx
 
 ## How it works
 
-```
---0---------------------------|>
-----1-------------------------|>
-----{0, 1}--------------------|>
-```
-
 Just `combineLatest` operator magic. See more [on ReactiveX.io](http://reactivex.io/documentation/operators/combinelatest.html).
 
 ## API
