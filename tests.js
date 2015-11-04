@@ -24,27 +24,27 @@ describe('Transmitter', () => {
 	};
 
 	it('should create React component', () => {
-		const Container = Transmitter.create(Component, {});
+		const Container = Transmitter.create(Component, {fragments: {}});
 
 		assert.ok(TestUtils.isElement(<Container />), 'Container should be a React component');
 		assert.equal(Container.displayName, 'Transmitter(Component)', 'Container should have Component\'s name with suffix');
 	});
 
 	it('should create React component if enum is used', () => {
-		const Container = Transmitter.create({success: Component}, {});
+		const Container = Transmitter.create({success: Component}, {fragments: {}});
 
 		assert.ok(TestUtils.isElement(<Container />), 'Container should be a React component');
 		assert.equal(Container.displayName, 'Transmitter(Component)', 'Container should have Component\'s name with suffix');
 	});
 
 	it('should raise an error if no components are specified', () => {
-		assert.throws(() => Transmitter.create({success: null}, {}), /Success, Failure and Pending should be React components/);
-		assert.throws(() => Transmitter.create({}, {}), /Success component should be specified/);
+		assert.throws(() => Transmitter.create({success: null}, {fragments: {}}), /Success, Failure and Pending should be React components/);
+		assert.throws(() => Transmitter.create({}, {fragments: {}}), /Success component should be specified/);
 	});
 
 	it('should render Pending component by default', () => {
 		const Spinner = () => <p>Loading...</p>;
-		const Container = Transmitter.create({success: Component, pending: Spinner}, {});
+		const Container = Transmitter.create({success: Component, pending: Spinner}, {fragments: {}});
 		const RenderOutput = ShallowRender(<Container />);
 
 		assert.ok(TestUtils.isElementOfType(RenderOutput, Spinner), 'Pending component should be rendered');
@@ -116,9 +116,10 @@ describe('Transmitter', () => {
 	});
 
 	it('should be root container if initial variables are passed', () => {
-		const Container = Transmitter.create(Component, {});
+		const Container = Transmitter.create(Component, {fragments: {}});
 		const RootContainer = Transmitter.create(Component, {
-			initialVariables: {thing: null}
+			initialVariables: {thing: null},
+			fragments: {}
 		});
 
 		assert.ok(Container.hasOwnProperty('isRootContainer'), 'Container should have `isRootContainer` flag');
