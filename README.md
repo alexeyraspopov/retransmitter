@@ -18,6 +18,8 @@ Using this function in mind we can imagine our stateful UI as a set of "snapshot
 
 ![](docs/communication-system.png)
 
+(from [A Mathematical Theory of Communication](http://www.cs.haifa.ac.il/~oren/Publications/TEDinTALG.pdf)).
+
 ## Installation
 
 Install via NPM:
