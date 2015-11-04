@@ -6,7 +6,7 @@ Inspired by [Relay](https://facebook.github.io/relay). An attempt to create unif
 
 ***NB***: For now Transmitter depends on [Rx](https://github.com/Reactive-Extensions/RxJS) (used as peer dependency).
 
-## Intro
+## Introduction
 
  1. Static view
  2. Decomposition
