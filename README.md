@@ -8,17 +8,11 @@ Inspired by [Relay](https://facebook.github.io/relay). An attempt to create unif
 
 ## Introduction
 
-Let's treat UI as pure function of data.
-
-```javascript
-View = (Data) => UI;
-```
-
-Using this function in mind we can imagine our stateful UI as a set of "snapshots": particular UIs based on particular data in particular moment of time. Data changes and function is called again with new params and rendered view is updated.
-
 ![](docs/communication-system.png)
 
 (from [A Mathematical Theory of Communication](http://worrydream.com/refs/Shannon%20-%20A%20Mathematical%20Theory%20of%20Communication.pdf)).
+
+This diagram
 
 ## Installation
 
