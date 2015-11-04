@@ -35,9 +35,6 @@ Inspired by [Relay](https://facebook.github.io/relay). An attempt to create unif
 │                      │
 │ ┌─ Item ───────────┐ │
 │ │                  │ │
-│ │                  │ │
-│ │                  │ │
-│ │                  │ │
 │ └──────────────────┘ │
 └──────────────────────┘
 ```
