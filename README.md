@@ -8,7 +8,12 @@ Inspired by [Relay](https://facebook.github.io/relay). An attempt to create unif
 
 ## Intro
 
-*Here should be an explanation of principle "from the bottom to the top".*
+ 1. Static view
+ 2. Decomposition
+ 3. From the bottom
+ 4. Reactive Programming 101
+ 5. Information source
+ 6. Container and reusability
 
 ## Installation
 
