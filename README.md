@@ -16,7 +16,7 @@ View = (Data) => UI;
 
 Using this function in mind we can imagine our stateful UI as a set of "snapshots": particular UIs based on particular data in particular moment of time. Data changes and function is called again with new params and rendered view is updated.
 
-<img src="docs/communication-system.png" />
+![](docs/communication-system.png)
 
 ## Installation
 
