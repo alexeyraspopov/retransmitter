@@ -8,13 +8,6 @@ Inspired by [Relay](https://facebook.github.io/relay). An attempt to create unif
 
 ## Introduction
 
- 1. Static view
- 2. Decomposition
- 3. From the bottom
- 4. Reactive Programming 101
- 5. Information source
- 6. Container and reusability
-
 Let's treat UI as pure function of data.
 
 ```javascript
