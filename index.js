@@ -17,10 +17,12 @@ export default {
 
 function Container(Component, options) {
 	const {
-		fragments = {},
+		fragments,
 		shouldContainerUpdate = () => true,
 		initialVariables = {},
 	} = options;
+
+	invariant(fragments, 'Fragments are not specified. Do you really need Transmitter?');
 
 	const componentEnum = enumerate(Component);
 	const displayName = `Transmitter(${componentEnum.success.displayName || componentEnum.success.name})`;
