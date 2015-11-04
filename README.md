@@ -59,7 +59,7 @@ Just `combineLatest` operator magic. See more [on ReactiveX.io](http://reactivex
 Creates an Observable from Store ([Flux](https://github.com/facebook/flux), [Redux](https://github.com/rackt/redux), etc). Store is an object that provides next API:
 
  * `getState()` — returns current state of this store.
- * `subscribe()` — adds a listener and returns `unsubscribe` function.
+ * `subscribe()` — adds a change listener and returns `unsubscribe` function.
 
 ### `Transmitter.fromPromise(promise)`
 
