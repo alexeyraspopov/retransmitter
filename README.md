@@ -69,7 +69,7 @@ See more [in RxJS docs](https://github.com/Reactive-Extensions/RxJS/blob/master/
 
 ### `Transmitter.fromValue(value)`
 
-Use if you want to pass dummy or constant data via fragment. If you want to pass event hook (ie Flux's Action Creator) you don't need to wrap it.
+Use if you want to pass dummy or constant data via fragment. If you want to pass event hook (ie Flux's Action Creator) you don't need to use `fromValue`.
 
 See more [in RxJS docs](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/return.md).
 
