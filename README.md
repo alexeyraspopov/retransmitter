@@ -12,8 +12,6 @@ Inspired by [Relay](https://facebook.github.io/relay). An attempt to create unif
 
 (from [A Mathematical Theory of Communication](http://worrydream.com/refs/Shannon%20-%20A%20Mathematical%20Theory%20of%20Communication.pdf)).
 
-This diagram
-
 ## Installation
 
 Install via NPM:
