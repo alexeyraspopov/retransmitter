@@ -50,9 +50,9 @@ Just `combineLatest` operator magic. See more [on ReactiveX.io](http://reactivex
 
  * `Component` — React Component or enum `{pending, success, failure}` of React Components.
  * `options` — object
-   * `initialVariables` **(optional)**
-   * `fragments`
-   * `shouldContainerUpdate()` **(optional)**
+   * `initialVariables` **(optional)** — an object with predefined variables for fragments.
+   * `fragments` — set of functions that are fetching data from different sources. Names should be the same as follow prop names in the component you're using.
+   * `shouldContainerUpdate()` **(optional)** — lifecycle hook that receives new props and returns `true` or `false`.
 
 ### `Transmitter.fromStore(store)`
 
