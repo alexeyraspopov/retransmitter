@@ -8,9 +8,9 @@ Inspired by [Relay](https://facebook.github.io/relay). An attempt to create unif
 
 ## Introduction
 
-![](docs/communication-system.png)
+The idea of transmitter for UI is heavily inspired by [A Mathematical Theory of Communication](http://worrydream.com/refs/Shannon%20-%20A%20Mathematical%20Theory%20of%20Communication.pdf).
 
-(from [A Mathematical Theory of Communication](http://worrydream.com/refs/Shannon%20-%20A%20Mathematical%20Theory%20of%20Communication.pdf)).
+![](docs/communication-system.png)
 
 ## Installation
 
