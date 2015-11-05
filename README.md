@@ -1,6 +1,6 @@
 # Transmitter
 
-Async declarative component-based (and other buzzwords) programming made easy.
+Async declarative reactive component-based (and other buzzwords) programming made easy.
 
 Inspired by [Relay](https://facebook.github.io/relay). An attempt to create unified container solution.
 
