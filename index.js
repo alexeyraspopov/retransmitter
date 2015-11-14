@@ -7,7 +7,7 @@ const FETCH_FAILED = 'FETCH_FAILED';
 const FETCH_ABORTED = 'FETCH_ABORTED';
 
 export default {
-	create: Container,
+	create: createContainer,
 	fromPromise: Observable.fromPromise,
 	fromValue: Observable.just,
 	fromStore,
@@ -15,7 +15,7 @@ export default {
 	FETCH_ABORTED,
 };
 
-function Container(Component, options) {
+function createContainer(Component, options) {
 	const {
 		fragments,
 		shouldContainerUpdate = () => true,
