@@ -8,13 +8,13 @@ const FETCH_FAILED = 'FETCH_FAILED';
 const FETCH_ABORTED = 'FETCH_ABORTED';
 
 export default {
-	Container,
-	create: createContainer,
-	fromPromise: Observable.fromPromise,
-	fromValue: Observable.just,
-	fromStore,
 	FETCH_FAILED,
 	FETCH_ABORTED,
+	Container,
+	fromStore,
+	fromPromise: Observable.fromPromise,
+	fromValue: Observable.just,
+	create: createContainer,
 };
 
 function createContainer(Component, options) {
