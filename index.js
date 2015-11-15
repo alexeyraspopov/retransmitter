@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import Container from './container';
 import {Observable, helpers} from 'rx';
 import assign from 'object-assign';
 import invariant from 'invariant';
@@ -7,6 +8,7 @@ const FETCH_FAILED = 'FETCH_FAILED';
 const FETCH_ABORTED = 'FETCH_ABORTED';
 
 export default {
+	Container,
 	create: createContainer,
 	fromPromise: Observable.fromPromise,
 	fromValue: Observable.just,
