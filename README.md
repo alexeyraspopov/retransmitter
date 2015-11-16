@@ -71,6 +71,37 @@ Use if you want to pass dummy or constant data via fragment. If you want to pass
 
 See more [in RxJS docs](https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/return.md).
 
+## ES6 class-based API
+
+```javascript
+class UserInfoContainer extends Transmitter.Container {
+	observe({userId}) {
+		return {
+			user: fetch(`/users/${userId}`),
+		};
+	}
+
+	render() {
+		return <UserInfo user={this.state.user} />;
+	}
+}
+```
+
+```javascript
+class TodoListContainer extends Transmitter.Container {
+	observe() {
+		return {
+			todos: fetch('/todos'),
+			query: Transmitter.fromStore(QueryStore),
+		};
+	}
+
+	render() {
+		return <TodoList todos={this.state.todos} query={this.state.query} />
+	}
+}
+```
+
 ## Examples
 
 ```javascript
