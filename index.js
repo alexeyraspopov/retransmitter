@@ -170,14 +170,8 @@ function isReactComponentEnum(target) {
 }
 
 function fromEverything(object) {
-	if (helpers.isPromise(object)) {
-		return Observable.fromPromise(object);
-	}
-
-	if (helpers.isFunction(object)) {
-		return Observable.just(object);
-	}
-
+	if (helpers.isPromise(object)) return Observable.fromPromise(object);
+	if (helpers.isFunction(object)) return Observable.just(object);
 	// assume that `object` is Observable by default
 	return object;
 }
