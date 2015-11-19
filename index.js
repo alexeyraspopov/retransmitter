@@ -13,6 +13,7 @@ export default {
 	fromPromise: Observable.fromPromise,
 	fromValue: Observable.just,
 	create: createContainer,
+	wrap: wrapAsync,
 };
 
 function createContainer(Component, options) {
@@ -140,7 +141,7 @@ function createContainer(Component, options) {
 	});
 }
 
-function wrap(asyncFunction) {
+function wrapAsync(asyncFunction) {
 	return React.createClass({
 		displayName: `Transmitter(${asyncFunction.displayName || asyncFunction.name})`,
 
