@@ -153,18 +153,18 @@ function wrapAsync(asyncFunction) {
 			return {body: <noscript />};
 		},
 
-		update(variables) {
-			const result = fn(variables);
+		update(props) {
+			const result = asyncFunction(props);
 
 			Promise.resolve(result).then(body => this.setState({body}))
 		},
 
 		componentWillMount() {
-			this.update(this.props.variables);
+			this.update(this.props);
 		},
 
 		componentWillReceiveProps(nextProps) {
-			this.update(nextProps.variables);
+			this.update(nextProps);
 		},
 
 		render() {
