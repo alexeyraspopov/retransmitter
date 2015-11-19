@@ -140,6 +140,32 @@ function createContainer(Component, options) {
 	});
 }
 
+function wrap(asyncFunction) {
+	return React.createClass({
+		displayName: `Transmitter(${asyncFunction.displayName || asyncFunction.name})`,
+
+		propTypes: {
+			variables: PropTypes.object,
+		},
+
+		getInitialState() {
+			return {body: <noscript />};
+		},
+
+		componentWillMount() {
+			fn(this.props.variables).then(body => this.setState({body}));
+		},
+
+		componentWillReceiveProps(nextProps) {
+			fn(nextProps.variables).then(body => this.setState({body}));
+		},
+
+		render() {
+			return this.state.body;
+		}
+	});
+}
+
 const EmptyComponent = React.createClass({
 	render() { return null; }
 });

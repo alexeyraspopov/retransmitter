@@ -52,6 +52,10 @@ Just `combineLatest` operator magic. See more [on ReactiveX.io](http://reactivex
    * `fragments` — set of functions that are fetching data from different sources. Names should be the same as follow prop names in the component you're using.
    * `shouldContainerUpdate()` **(optional)** — lifecycle hook that receives new props and returns `true` or `false`.
 
+### `Transmitter.wrap(asyncFunction)`
+
+TBD
+
 ### `Transmitter.fromStore(store)`
 
 Creates an Observable from Store ([Flux](https://github.com/facebook/flux), [Redux](https://github.com/rackt/redux), etc). Store is an object that provides next API:
