@@ -152,12 +152,18 @@ function wrap(asyncFunction) {
 			return {body: <noscript />};
 		},
 
+		update(variables) {
+			const result = fn(variables);
+
+			Promise.resolve(result).then(body => this.setState({body}))
+		},
+
 		componentWillMount() {
-			fn(this.props.variables).then(body => this.setState({body}));
+			this.update(this.props.variables);
 		},
 
 		componentWillReceiveProps(nextProps) {
-			fn(nextProps.variables).then(body => this.setState({body}));
+			this.update(nextProps.variables);
 		},
 
 		render() {
