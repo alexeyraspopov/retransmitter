@@ -54,7 +54,7 @@ Just `combineLatest` operator magic. See more [on ReactiveX.io](http://reactivex
 
 ### `Transmitter.wrap(asyncFunction)`
 
-TBD
+ * `asyncFunction` — function that probably returns Promise with React UI.
 
 ### `Transmitter.fromStore(store)`
 
