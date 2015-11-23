@@ -1,10 +1,13 @@
 import React from 'react';
+import invariant from 'invariant';
 
 export default {AsyncComponent};
 
 function AsyncComponent(asyncFunction) {
+	const functionName = asyncFunction.displayName || asyncFunction.name;
+
 	return React.createClass({
-		displayName: `Transmitter(${asyncFunction.displayName || asyncFunction.name})`,
+		displayName: `Transmitter(${functionName})`,
 
 		getInitialState() {
 			return {body: React.createElement('noscript')};
@@ -13,8 +16,11 @@ function AsyncComponent(asyncFunction) {
 		update(props) {
 			const result = asyncFunction(props);
 
+			// TODO: add test
+			invariant(result instanceof Promise, `The function ${functionName} doesn't return Promise. You probably don't need AsyncComponent in this case`);
+
 			// TODO: add failure path
-			Promise.resolve(result).then(body => this.setState({body}));
+			result.then(body => this.setState({body}));
 		},
 
 		componentWillMount() {
