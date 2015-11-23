@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha --compilers js:babel/register tests.js",
     "coverage": "istanbul cover _mocha --include index.js --report html -- tests.js -r babel/register",
-    "prepublish": "babel index.js > bundle.js",
+    "prepublish": "NODE_ENV=production babel index.js > bundle.js",
     "preversion": "npm test"
   },
   "repository": "alexeyraspopov/retransmitter",
