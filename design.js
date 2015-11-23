@@ -1,5 +1,5 @@
 // simple async component
-Transmitter.wrap(UserInfoContainer);
+Transmitter.wrap(UserInfoContainer/*, Loading*/);
 async function UserInfoContainer({userId}) {
 	const user = await User.find({id: userId});
 
@@ -15,6 +15,18 @@ class UsersListContainer extends Transmitter.Container {
 		};
 	}
 
+	shouldContainerUpdate() {
+		return true;
+	}
+
+	renderPending() {
+		const {onAbort} = this.state;
+	}
+
+	renderFailure() {
+		const {onRetry, error} = this.state;
+	}
+
 	render() {
 		return <UsersList users={this.state.users} query={this.state.query} />;
 	}
@@ -23,12 +35,7 @@ class UsersListContainer extends Transmitter.Container {
 // transmitter container api
 Transmitter.create({
 	observe() {},
+	renderPending() {},
+	renderFailure() {},
 	render() {},
-});
-
-// Transmitter container for rich elements
-Transmitter.adapter({
-	pending: LoadingSpinner,
-	success: DataComponent,
-	failure: ErrorMessage,
 });
