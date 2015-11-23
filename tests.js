@@ -45,7 +45,7 @@ describe('AsyncComponent', () => {
 		});
 	});
 
-	it('should refetch data when props is changed', async () => {
+	it('should refetch data when props is changed', () => {
 		const ComponentFetch = async props => {
 			const data = await Promise.resolve(props.id);
 			return <Component data={data + 1} />;
