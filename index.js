@@ -14,7 +14,7 @@ function AsyncComponent(asyncFunction) {
 			const result = asyncFunction(props);
 
 			// TODO: add failure path
-			Promise.resolve(result).then(body => this.setState({body}))
+			Promise.resolve(result).then(body => this.setState({body}));
 		},
 
 		componentWillMount() {
