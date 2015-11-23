@@ -40,8 +40,8 @@ describe('AsyncComponent', () => {
 		return runAsync(() => {
 			const Output = ReactShallow.getRenderOutput();
 
-			assert.ok(TestUtils.isElementOfType(Output, Component), 'Success component should be rendered');
-			assert.deepEqual(Output.props, {data: 13}, 'Component should be rendered with data fetched via fragments');
+			assert.ok(TestUtils.isElementOfType(Output, Component), 'Returned component should be rendered');
+			assert.deepEqual(Output.props, {data: 13}, 'Component should be rendered with data fetched via async function');
 		});
 	});
 
