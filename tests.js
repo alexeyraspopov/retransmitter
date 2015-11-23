@@ -8,7 +8,7 @@ function log(target) {
 }
 
 function runAsync(block) {
-	return new Promise(resolve => setTimeout(() => resolve(block()), 10));
+	return new Promise(resolve => setTimeout(async () => resolve(await block()), 10));
 }
 
 describe('AsyncComponent', () => {
@@ -20,7 +20,7 @@ describe('AsyncComponent', () => {
 			return <Component />;
 		};
 
-		const Container = Transmitter.wrap(ComponentFetch);
+		const Container = Transmitter.AsyncComponent(ComponentFetch);
 
 		assert.ok(TestUtils.isElement(<Container />), 'Container should be a React component');
 		assert.equal(Container.displayName, 'Transmitter(ComponentFetch)', 'Container should have Component\'s name with prefix');
@@ -32,7 +32,7 @@ describe('AsyncComponent', () => {
 			return <Component data={data} />;
 		};
 
-		const Container = Transmitter.wrap(ComponentFetch);
+		const Container = Transmitter.AsyncComponent(ComponentFetch);
 		const ReactShallow = TestUtils.createRenderer();
 
 		ReactShallow.render(<Container />);
@@ -42,6 +42,25 @@ describe('AsyncComponent', () => {
 
 			assert.ok(TestUtils.isElementOfType(Output, Component), 'Success component should be rendered');
 			assert.deepEqual(Output.props, {data: 13}, 'Component should be rendered with data fetched via fragments');
+		});
+	});
+
+	it('should refetch data when props is changed', async () => {
+		const ComponentFetch = async props => {
+			const data = await Promise.resolve(props.id);
+			return <Component data={data + 1} />;
+		};
+
+		const Container = Transmitter.AsyncComponent(ComponentFetch);
+		const ReactShallow = TestUtils.createRenderer();
+
+		ReactShallow.render(<Container id={1} />);
+		ReactShallow.render(<Container id={2} />);
+
+		return runAsync(() => {
+			const Output = ReactShallow.getRenderOutput();
+
+			assert.deepEqual(Output.props, {data: 3}, '');
 		});
 	});
 });
