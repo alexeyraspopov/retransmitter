@@ -7,7 +7,7 @@ function AsyncComponent(asyncFunction) {
 		displayName: `Transmitter(${asyncFunction.displayName || asyncFunction.name})`,
 
 		getInitialState() {
-			return {body: <noscript />};
+			return {body: React.createElement('noscript')};
 		},
 
 		update(props) {
