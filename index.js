@@ -28,9 +28,13 @@ function AsyncComponent(asyncFunction) {
 			this.update(this.props);
 		},
 
-		// TODO: add shouldComponentUpdate
 		componentWillReceiveProps(nextProps) {
 			this.update(nextProps);
+		},
+
+		shouldComponentUpdate(nextProps) {
+			// TODO: so what?
+			return true;
 		},
 
 		render() {
