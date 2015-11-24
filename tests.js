@@ -54,6 +54,7 @@ describe('AsyncComponent', () => {
 		const Container = Transmitter.AsyncComponent(ComponentFetch);
 		const ReactShallow = TestUtils.createRenderer();
 
+		// TODO: add spy for `componentWillReceiveProps`
 		ReactShallow.render(<Container id={1} />);
 		ReactShallow.render(<Container id={2} />);
 
