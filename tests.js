@@ -64,6 +64,18 @@ describe('AsyncComponent', () => {
 			assert.deepEqual(Output.props, {data: 3}, '');
 		});
 	});
+
+	it('should work with rejected promises', () => {
+		const ErrorMessage = props => <div />;
+		const ComponentFetch = async props => {
+			try {
+				const data = await Promise.reject();
+				return <Component />;
+			} catch (e) {
+				return <ErrorMessage />;
+			}
+		};
+	});
 });
 
 describe('Transmitter.Container', () => {
