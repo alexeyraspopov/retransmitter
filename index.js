@@ -50,4 +50,12 @@ class Container extends React.Component {
 	componentWillMount() {
 		invariant(typeof this.observe === 'function', 'You should implement `observe` method for getting Transmitter.Container power');
 	}
+
+	componentWillUnmount() {
+		// TODO: call dispose method
+	}
+
+	componentWillReceiveProps(nextProps) {
+		// TODO: observe data again
+	}
 }
