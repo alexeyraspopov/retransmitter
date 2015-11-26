@@ -108,7 +108,15 @@ describe('AsyncComponent', () => {
 
 		const Output = ReactShallow.getRenderOutput();
 		assert.ok(TestUtils.isElementOfType(Output, 'noscript'), 'Not fulfilled async component should render <noscript />');
-	})
+	});
+
+	it('should throw an error if async function result is not React component', () => {
+		const ComponentFetch = async props => await {};
+		const Container = Transmitter.AsyncComponent(ComponentFetch);
+		const ReactShallow = TestUtils.createRenderer();
+
+		// TODO: finish this
+	});
 });
 
 describe('Transmitter.Container', () => {
