@@ -30,11 +30,6 @@ function AsyncComponent(asyncFunction) {
 			this.update(nextProps);
 		},
 
-		shouldComponentUpdate(nextProps) {
-			// TODO: so what?
-			return true;
-		},
-
 		render() {
 			return this.state.body;
 		}
