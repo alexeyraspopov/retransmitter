@@ -69,12 +69,22 @@ describe('AsyncComponent', () => {
 		const ErrorMessage = props => <div />;
 		const ComponentFetch = async props => {
 			try {
-				const data = await Promise.reject();
+				const data = await Promise.reject(13);
 				return <Component />;
 			} catch (e) {
 				return <ErrorMessage />;
 			}
 		};
+
+		const Container = Transmitter.AsyncComponent(ComponentFetch);
+		const ReactShallow = TestUtils.createRenderer();
+
+		ReactShallow.render(<Container />);
+
+		return runAsync(() => {
+			const Output = ReactShallow.getRenderOutput();
+			assert.ok(TestUtils.isElementOfType(Output, ErrorMessage), 'AsyncComponent should work with failure state of async function');
+		});
 	});
 });
 
