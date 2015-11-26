@@ -2,7 +2,7 @@
 import React from 'react';
 import invariant from 'invariant';
 
-export default {AsyncComponent};
+export default {AsyncComponent, Container};
 
 function AsyncComponent(asyncFunction) {
 	const functionName = asyncFunction.displayName || asyncFunction.name;
@@ -39,4 +39,11 @@ function AsyncComponent(asyncFunction) {
 			return this.state.body;
 		}
 	});
+}
+
+class Container extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = null;
+	}
 }
