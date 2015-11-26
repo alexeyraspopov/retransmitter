@@ -58,4 +58,8 @@ class Container extends React.Component {
 	componentWillReceiveProps(nextProps) {
 		// TODO: observe data again
 	}
+
+	render() {
+		// TODO: choose correct render method
+	}
 }
