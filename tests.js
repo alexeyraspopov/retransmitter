@@ -83,7 +83,7 @@ describe('AsyncComponent', () => {
 
 		return runAsync(() => {
 			const Output = ReactShallow.getRenderOutput();
-			assert.ok(TestUtils.isElementOfType(Output, ErrorMessage), 'AsyncComponent should work with failure state of async function');
+			assert.ok(TestUtils.isElementOfType(Output, ErrorMessage), 'Async component should work with failure state of async function');
 		});
 	});
 
