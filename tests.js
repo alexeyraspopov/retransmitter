@@ -86,6 +86,14 @@ describe('AsyncComponent', () => {
 			assert.ok(TestUtils.isElementOfType(Output, ErrorMessage), 'AsyncComponent should work with failure state of async function');
 		});
 	});
+
+	it('should throw an error if function is not async', () => {
+		const ComponentFetch = props => <div />;
+		const Container = Transmitter.AsyncComponent(ComponentFetch);
+		const ReactShallow = TestUtils.createRenderer();
+
+		assert.throws(() => ReactShallow.render(<Container />), /doesn't return Promise/);
+	});
 });
 
 describe('Transmitter.Container', () => {

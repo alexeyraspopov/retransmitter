@@ -17,10 +17,8 @@ function AsyncComponent(asyncFunction) {
 			const result = asyncFunction(props);
 			const updateState = body => this.setState({body});
 
-			// TODO: add test
 			invariant(result instanceof Promise, `The function ${functionName} doesn't return Promise. You probably don't need AsyncComponent in this case`);
 
-			// TODO: add failure path, and test for it
 			result.then(updateState, updateState);
 		},
 
