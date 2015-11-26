@@ -46,4 +46,8 @@ class Container extends React.Component {
 		super(props);
 		this.state = null;
 	}
+
+	componentWillMount() {
+		invariant(typeof this.observe === 'function', 'You should implement `observe` method for getting Transmitter.Container power');
+	}
 }
