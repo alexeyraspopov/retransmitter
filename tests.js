@@ -133,6 +133,12 @@ describe('Transmitter.Container', () => {
 	it('should produce React element', () => {
 		assert.ok(React.isValidElement(<Component />), 'Container should produce React component');
 	});
+
+	it('should throw an error if `observe` method is not defined', () => {
+		const ReactShallow = TestUtils.createRenderer();
+
+		assert.throws(() => ReactShallow.render(<Component />), /You should implement `observe` method/);
+	});
 });
 
 describe('Transmitter.create', () => {
