@@ -120,7 +120,19 @@ describe('AsyncComponent', () => {
 });
 
 describe('Transmitter.Container', () => {
+	class Component extends Transmitter.Container {
+		constructor(props) {
+			super(props);
+		}
 
+		render() {
+			return null;
+		}
+	}
+
+	it('should produce React element', () => {
+		assert.ok(React.isValidElement(<Component />), 'Container should produce React component');
+	});
 });
 
 describe('Transmitter.create', () => {
