@@ -2,8 +2,6 @@
 import React from 'react';
 import invariant from 'invariant';
 
-export default {AsyncComponent, Container};
-
 function AsyncComponent(asyncFunction) {
 	const functionName = asyncFunction.displayName || asyncFunction.name;
 
@@ -63,3 +61,5 @@ class Container extends React.Component {
 		// TODO: choose correct render method
 	}
 }
+
+export default {AsyncComponent, Container};
