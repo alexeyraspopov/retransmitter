@@ -46,7 +46,7 @@ export class Container extends React.Component {
 	}
 
 	componentWillMount() {
-		invariant(typeof this.observe === 'function', 'You should implement `observe` method for getting Transmitter.Container power');
+		invariant(typeof this.observe === 'function', 'Transmitter.Container requires `observe` method to be implemented');
 	}
 
 	componentWillUnmount() {

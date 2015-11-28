@@ -137,7 +137,7 @@ describe('Transmitter.Container', () => {
 	it('should throw an error if `observe` method is not defined', () => {
 		const ReactShallow = TestUtils.createRenderer();
 
-		assert.throws(() => ReactShallow.render(<Component />), /You should implement `observe` method/);
+		assert.throws(() => ReactShallow.render(<Component />), /Transmitter.Container requires `observe` method/);
 	});
 });
 
