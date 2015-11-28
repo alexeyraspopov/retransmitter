@@ -17,7 +17,7 @@ export function AsyncComponent(asyncFunction) {
 			this.setState({body});
 		},
 
-		update(props) {
+		observe(props) {
 			const result = asyncFunction(props);
 
 			invariant(result instanceof Promise, `The function ${functionName} doesn't return Promise. You probably don't need AsyncComponent in this case`);
@@ -26,11 +26,11 @@ export function AsyncComponent(asyncFunction) {
 		},
 
 		componentWillMount() {
-			this.update(this.props);
+			this.observe(this.props);
 		},
 
 		componentWillReceiveProps(nextProps) {
-			this.update(nextProps);
+			this.observe(nextProps);
 		},
 
 		render() {
