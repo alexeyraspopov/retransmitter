@@ -22,3 +22,19 @@ const user = { name: 'Ann', isOnline: true };
 
 ReactDOM.render(<UserInfo user={user} />, ...);
 ```
+
+These functions are written in interactive (pull-based) approach. The only one place where these functions are getting their data to show is **props**. If we start development from the smallest component (that doesn't have any other React components as a child) we will continue with creating more specific components that will "prepare" props for their child React components. That's a simple idea of **composition**.
+
+```javascript
+function UserList({users}) {
+	return (
+		<section>
+			{users.map(user => <UserInfo user={user} />)}
+		</section>
+	);
+}
+```
+
+At some level we have to get data outside of the UI, and probably from different sources. It can be Flux stores, REST API, client-side storage (Local Storage, IndexedDB, etc), any other Web API.
+
+Let's keep in mind that we should describe data requirements close to the place where they are needed.
