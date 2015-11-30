@@ -2,7 +2,7 @@
 import React from 'react';
 import invariant from 'invariant';
 
-export function AsyncComponent(asyncFunction) {
+export default function AsyncComponent(asyncFunction) {
 	const functionName = asyncFunction.displayName || asyncFunction.name;
 
 	return React.createClass({
@@ -38,28 +38,3 @@ export function AsyncComponent(asyncFunction) {
 		}
 	});
 }
-
-export class Container extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = null;
-	}
-
-	componentWillMount() {
-		invariant(typeof this.observe === 'function', 'Transmitter.Container requires `observe` method to be implemented');
-	}
-
-	componentWillUnmount() {
-		// TODO: call dispose method
-	}
-
-	componentWillReceiveProps(nextProps) {
-		// TODO: observe data again
-	}
-
-	render() {
-		// TODO: choose correct render method
-	}
-}
-
-export default {AsyncComponent, Container};
