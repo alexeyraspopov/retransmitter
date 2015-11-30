@@ -1,7 +1,7 @@
 import React from 'react';
 import TestUtils from 'react/lib/ReactTestUtils';
 import AsyncComponent from './index';
-import Transmitter from './lib/container';
+import Transmitter from './src/container';
 import assert from 'assert';
 
 function log(target) {
