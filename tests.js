@@ -1,6 +1,7 @@
 import React from 'react';
 import TestUtils from 'react/lib/ReactTestUtils';
-import Transmitter from './index';
+import AsyncComponent from './index';
+import Tr from './lib/container';
 import assert from 'assert';
 
 function log(target) {
@@ -20,7 +21,7 @@ describe('AsyncComponent', () => {
 			return <Component />;
 		};
 
-		const Container = Transmitter.AsyncComponent(ComponentFetch);
+		const Container = AsyncComponent(ComponentFetch);
 
 		assert.ok(TestUtils.isElement(<Container />), 'Container should be a React component');
 		assert.equal(Container.displayName, 'Transmitter(ComponentFetch)', 'Container should have Component\'s name with prefix');
@@ -32,7 +33,7 @@ describe('AsyncComponent', () => {
 			return <Component data={data} />;
 		};
 
-		const Container = Transmitter.AsyncComponent(ComponentFetch);
+		const Container = AsyncComponent(ComponentFetch);
 		const ReactShallow = TestUtils.createRenderer();
 
 		ReactShallow.render(<Container />);
@@ -51,7 +52,7 @@ describe('AsyncComponent', () => {
 			return <Component data={data + 1} />;
 		};
 
-		const Container = Transmitter.AsyncComponent(ComponentFetch);
+		const Container = AsyncComponent(ComponentFetch);
 		const ReactShallow = TestUtils.createRenderer();
 
 		// TODO: add spy for `componentWillReceiveProps`
@@ -76,7 +77,7 @@ describe('AsyncComponent', () => {
 			}
 		};
 
-		const Container = Transmitter.AsyncComponent(ComponentFetch);
+		const Container = AsyncComponent(ComponentFetch);
 		const ReactShallow = TestUtils.createRenderer();
 
 		ReactShallow.render(<Container />);
@@ -89,7 +90,7 @@ describe('AsyncComponent', () => {
 
 	it('should throw an error if function is not async', () => {
 		const ComponentFetch = props => <div />;
-		const Container = Transmitter.AsyncComponent(ComponentFetch);
+		const Container = AsyncComponent(ComponentFetch);
 		const ReactShallow = TestUtils.createRenderer();
 
 		assert.throws(() => ReactShallow.render(<Container />), /doesn't return Promise/);
@@ -101,7 +102,7 @@ describe('AsyncComponent', () => {
 			return <Component />;
 		};
 
-		const Container = Transmitter.AsyncComponent(ComponentFetch);
+		const Container = AsyncComponent(ComponentFetch);
 		const ReactShallow = TestUtils.createRenderer();
 
 		ReactShallow.render(<Container />);
@@ -112,7 +113,7 @@ describe('AsyncComponent', () => {
 
 	xit('should throw an error if async function result is not React element', () => {
 		const ComponentFetch = async props => await {};
-		const Container = Transmitter.AsyncComponent(ComponentFetch);
+		const Container = AsyncComponent(ComponentFetch);
 		const ReactShallow = TestUtils.createRenderer();
 
 		// TODO: finish this
@@ -120,7 +121,7 @@ describe('AsyncComponent', () => {
 });
 
 describe('Transmitter.Container', () => {
-	class Component extends Transmitter.Container {
+	class Component extends Tr {
 		constructor(props) {
 			super(props);
 		}
