@@ -9,7 +9,7 @@ function UserInfo({user}) {
 	return (
 		<article>
 			<p>{user.name}</p>
-			<p>{user.isOnline}</p>
+			<p><em>{user.isOnline && 'Online'}</em></p>
 		</article>
 	);
 }
@@ -18,5 +18,7 @@ function UserInfo({user}) {
 And use them as typical React component:
 
 ```javascript
-ReactDOM.render(<UserInfo user={...} />, ...);
+const user = { name: 'Ann', isOnline: true };
+
+ReactDOM.render(<UserInfo user={user} />, ...);
 ```
