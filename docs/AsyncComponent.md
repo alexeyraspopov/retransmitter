@@ -23,7 +23,7 @@ const user = { name: 'Ann', isOnline: true };
 ReactDOM.render(<UserInfo user={user} />, ...);
 ```
 
-These functions are written in interactive (pull-based) approach. The only one place where these functions are getting their data to show is **props**. If we start development from the smallest component (that doesn't have any other React components as a child) we will continue with creating more specific components that will "prepare" props for their child React components. That's a simple idea of **composition**.
+These functions are written in interactive (pull-based) approach. The only one place where these functions are getting their data to show is **props**. If we start development from the smallest component (that doesn't have any other React components as a children) we will continue with creating more specific components that will "prepare" props for their child React components. That's a simple idea of **composition**.
 
 ```javascript
 function UserList({users}) {
