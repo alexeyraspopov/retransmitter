@@ -28,3 +28,4 @@ node_modules
 
 # Build files
 bundle.js
+lib
