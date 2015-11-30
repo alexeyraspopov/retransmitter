@@ -1,7 +1,7 @@
 import React from 'react';
 import TestUtils from 'react/lib/ReactTestUtils';
 import AsyncComponent from './index';
-import Tr from './lib/container';
+import Transmitter from './lib/container';
 import assert from 'assert';
 
 function log(target) {
@@ -121,7 +121,7 @@ describe('AsyncComponent', () => {
 });
 
 describe('Transmitter.Container', () => {
-	class Component extends Tr {
+	class Container extends Transmitter {
 		constructor(props) {
 			super(props);
 		}
@@ -132,13 +132,13 @@ describe('Transmitter.Container', () => {
 	}
 
 	it('should produce React element', () => {
-		assert.ok(React.isValidElement(<Component />), 'Container should produce React component');
+		assert.ok(React.isValidElement(<Container />), 'Container should produce React component');
 	});
 
 	it('should throw an error if `observe` method is not defined', () => {
 		const ReactShallow = TestUtils.createRenderer();
 
-		assert.throws(() => ReactShallow.render(<Component />), /Transmitter.Container requires `observe` method/);
+		assert.throws(() => ReactShallow.render(<Container />), /Transmitter.Container requires `observe` method/);
 	});
 });
 
