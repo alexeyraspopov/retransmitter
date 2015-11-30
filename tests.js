@@ -1,6 +1,6 @@
 import React from 'react';
 import TestUtils from 'react/lib/ReactTestUtils';
-import AsyncComponent from './index';
+import AsyncComponent from './src/AsyncComponent';
 import Transmitter from './src/container';
 import assert from 'assert';
 

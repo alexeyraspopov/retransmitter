@@ -2,12 +2,11 @@
   "name": "retransmitter",
   "version": "0.2.1",
   "description": "Async-friendly stateful React containers",
-  "main": "bundle.js",
+  "main": "index.js",
   "scripts": {
     "test": "mocha --compilers js:babel/register tests.js",
     "coverage": "istanbul cover _mocha --include index.js --report html -- tests.js -r babel/register",
-    "babelify": "babel index.js > bundle.js && babel src --out-dir lib",
-    "prepublish": "NODE_ENV=production npm run babelify",
+    "prepublish": "NODE_ENV=production babel src --out-dir lib",
     "preversion": "npm test"
   },
   "repository": "alexeyraspopov/retransmitter",
