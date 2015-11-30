@@ -1,4 +1,6 @@
 *
-!bundle.js
+!index.js
+!lib/*.js
 !package.json
 !README.md
+!docs/
