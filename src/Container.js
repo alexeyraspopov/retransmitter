@@ -39,24 +39,15 @@ export default class Container extends React.Component {
 	}
 
 	success(fragments) {
-		this.setState({
-			status: 'success',
-			fragments,
-		});
+		this.setState({status: 'success', fragments});
 	}
 
 	failure(error) {
-		this.setState({
-			status: 'failure',
-			error,
-		});
+		this.setState({status: 'failure', error});
 	}
 
 	pending() {
-		this.setState({
-			status: 'pending',
-			error: null,
-		});
+		this.setState({status: 'pending', error: null});
 	}
 
 	componentWillMount() {
