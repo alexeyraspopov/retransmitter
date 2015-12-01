@@ -16,7 +16,7 @@ async function UserInfoPage({params: {userId}}) {
 }
 ```
 
-And you can use this **async component** with react-router (for example).
+And you can use this **async component** with [react-router](https://github.com/rackt/react-router) (for example).
 
 ```diff
 <Router history={...}>
