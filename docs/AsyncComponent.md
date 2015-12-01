@@ -2,6 +2,22 @@
 
 ***Warning***: this API is *experimental*. Use at your own risk.
 
+Here is a simple example of page which may be accessible on route `/users/:userId` and provides user info prefetched data.
+
+```javascript
+import AsyncComponent from 'retransmitter/lib/AsyncComponent';
+
+export default AsyncComponent(UserInfoPage);
+
+async function UserInfoPage({params: {userId}}) {
+	const user = await User.find({id: userId});
+
+	return <UserInfo user={user} />;
+}
+```
+
+## What is async component?
+
 Starting from React [v0.14](http://facebook.github.io/react/blog/2015/10/07/react-v0.14.html) you're able to describe stateless components as [plain functions](http://facebook.github.io/react/blog/2015/10/07/react-v0.14.html#stateless-functional-components):
 
 ```javascript
