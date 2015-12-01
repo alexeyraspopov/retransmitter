@@ -8,9 +8,7 @@ Inspired by [Relay](https://facebook.github.io/relay). An attempt to create unif
 
 ## Introduction
 
-The idea of transmitter for UI is heavily inspired by [A Mathematical Theory of Communication](http://worrydream.com/refs/Shannon%20-%20A%20Mathematical%20Theory%20of%20Communication.pdf).
-
-![](docs/communication-system.png)
+Read more [in docs](docs/Introduction.md)
 
 ## Installation
 
@@ -43,6 +41,8 @@ npm install --save react react-dom rx
 Just `combineLatest` operator magic. See more [on ReactiveX.io](http://reactivex.io/documentation/operators/combinelatest.html).
 
 ## API
+
+***Warning***: work in progress. This API will be changed soon.
 
 ### `Transmitter.create(Component, options)`
 
