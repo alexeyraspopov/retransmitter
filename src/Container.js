@@ -69,7 +69,7 @@ export default class Container extends React.Component {
 	}
 
 	render() {
-		// TODO: choose correct render method
+		invariant(false, 'Transmitter.Container requires `render` method to be implemented');
 	}
 }
 
