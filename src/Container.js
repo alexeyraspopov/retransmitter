@@ -6,8 +6,11 @@ import assign from 'object-assign';
 export default class Container extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {};
-		this.subscription = {};
+		this.state = {
+			status: 'pending',
+			fragments: {},
+			error: null,
+		};
 	}
 
 	fetch() {
