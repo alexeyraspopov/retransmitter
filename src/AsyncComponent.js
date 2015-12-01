@@ -14,6 +14,7 @@ export default function AsyncComponent(asyncFunction) {
 
 		updateState(body) {
 			invariant(React.isValidElement(body), `The result of ${functionName} is not a React element`);
+
 			this.setState({body});
 		},
 

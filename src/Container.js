@@ -13,6 +13,7 @@ export default class Container extends React.Component {
 	fetch() {
 		const fragments = this.observe();
 
+		// FIXME: missed `fromEverything` and `wrapFragment`
 		const streams = Object.keys(fragments)
 			.map(name => {
 				const fragment = fragments[name];
