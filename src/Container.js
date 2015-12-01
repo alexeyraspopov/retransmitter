@@ -42,6 +42,13 @@ export default class Container extends React.Component {
 		});
 	}
 
+	pending() {
+		this.setState({
+			status: 'pending',
+			error: null
+		});
+	}
+
 	componentWillMount() {
 		invariant(typeof this.observe === 'function', 'Transmitter.Container requires `observe` method to be implemented');
 
@@ -53,11 +60,11 @@ export default class Container extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		// TODO: observe data again
-		/*if (typeof this.shoudContainerUpdate === 'function' && this.shouldContainerUpdate(nextProps)) {
-				this.pending();
-				this.subscription = this.fetch(nextProps.variables);
-			}*/
+		if (typeof this.shoudContainerUpdate !== 'function' || this.shouldContainerUpdate(nextProps)) {
+			this.pending();
+			this.subscription.dispose();
+			this.subscription = this.fetch();
+		}
 	}
 
 	render() {
