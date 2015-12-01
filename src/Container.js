@@ -34,6 +34,10 @@ export default class Container extends React.Component {
 			);
 	}
 
+	observe() {
+		invariant(false, 'Transmitter.Container requires `observe` method to be implemented');
+	}
+
 	success(fragments) {
 		this.setState({
 			status: 'success',
@@ -56,8 +60,6 @@ export default class Container extends React.Component {
 	}
 
 	componentWillMount() {
-		invariant(typeof this.observe === 'function', 'Transmitter.Container requires `observe` method to be implemented');
-
 		this.subscription = this.fetch();
 	}
 
@@ -65,12 +67,14 @@ export default class Container extends React.Component {
 		this.subscription.dispose();
 	}
 
+	shouldComponentUpdate(nextProps, nextState) {
+		return typeof this.shouldComponentUpdate !== 'function' || this.shouldContainerUpdate(nextProps, nextState);
+	}
+
 	componentWillReceiveProps(nextProps) {
-		if (typeof this.shoudContainerUpdate !== 'function' || this.shouldContainerUpdate(nextProps)) {
-			this.pending();
-			this.subscription.dispose();
-			this.subscription = this.fetch();
-		}
+		this.pending();
+		this.subscription.dispose();
+		this.subscription = this.fetch();
 	}
 
 	render() {
