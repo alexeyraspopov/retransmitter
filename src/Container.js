@@ -51,7 +51,7 @@ export default class Container extends React.Component {
 	pending() {
 		this.setState({
 			status: 'pending',
-			error: null
+			error: null,
 		});
 	}
 
