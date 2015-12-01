@@ -23,6 +23,7 @@ export default class Container extends React.Component {
 			});
 
 		return Observable.combineLatest(streams)
+			.map(fragments => fragments.reduce((a, b) => assign(a, b), {}))
 			.subscribe(
 				results => this.success(results),
 				error => this.failure(error)
@@ -32,7 +33,7 @@ export default class Container extends React.Component {
 	success(fragments) {
 		this.setState({
 			status: 'success',
-			fragments: fragments.reduce((a, b) => assign(a, b), {}),
+			fragments,
 		});
 	}
 
