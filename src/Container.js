@@ -1,5 +1,5 @@
 import React from 'react';
-import {Observable} from 'rx';
+import {Observable, Disposable} from 'rx';
 import invariant from 'invariant';
 import assign from 'object-assign';
 
@@ -11,6 +11,7 @@ export default class Container extends React.Component {
 			fragments: {},
 			error: null,
 		};
+		this.subscription = Disposable.create();
 	}
 
 	fetch() {
