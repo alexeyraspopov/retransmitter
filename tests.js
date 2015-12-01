@@ -2,6 +2,8 @@ import React from 'react';
 import TestUtils from 'react/lib/ReactTestUtils';
 import AsyncComponent from './src/AsyncComponent';
 import Transmitter from './src/Container';
+import fromStore from './src/fromStore';
+import Redux from 'redux';
 import assert from 'assert';
 
 function log(target) {
@@ -142,6 +144,18 @@ describe('Transmitter.Container', () => {
 	});
 });
 
-describe('Transmitter.create', () => {
+describe('Transmitter.fromStore', () => {
+	it('should throws an error if store does not have getState method', () => {
+		assert.throws(() => fromStore({}), /Store should have getState method/);
+	});
 
+	it('should throws an error if store does not have subscribe method', () => {
+		assert.throws(() => fromStore({getState: () => null}), /Store should have subscribe method/);
+	});
+
+	// should work with addListener
+	// should return unsubscribe
+	// should start with getState() result
+	// should push updates from store
+	// should unsubscribe on dispose
 });
