@@ -16,6 +16,14 @@ async function UserInfoPage({params: {userId}}) {
 }
 ```
 
+And you can use this **async component** with react-router (for example).
+
+```diff
+<Router history={...}>
++	<Route path="/users/:userId" component={UserInfoPage} />
+</Router>
+```
+
 ## What is async component?
 
 Starting from React [v0.14](http://facebook.github.io/react/blog/2015/10/07/react-v0.14.html) you're able to describe stateless components as [plain functions](http://facebook.github.io/react/blog/2015/10/07/react-v0.14.html#stateless-functional-components):
