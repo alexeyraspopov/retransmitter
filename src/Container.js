@@ -59,7 +59,7 @@ export default class Container extends React.Component {
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
-		return typeof this.shouldComponentUpdate !== 'function' || this.shouldContainerUpdate(nextProps, nextState);
+		return typeof this.shouldContainerUpdate !== 'function' || this.shouldContainerUpdate(nextProps, nextState);
 	}
 
 	componentWillReceiveProps(nextProps) {
