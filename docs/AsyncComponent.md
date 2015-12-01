@@ -12,7 +12,7 @@ import AsyncComponent from 'retransmitter/lib/AsyncComponent';
 export default AsyncComponent(UserInfoPage);
 
 async function UserInfoPage({params: {userId}}) {
-	const user = await User.find({id: userId});
+	const user = await UsersAPI.find({id: userId});
 
 	return <UserInfo user={user} />;
 }
