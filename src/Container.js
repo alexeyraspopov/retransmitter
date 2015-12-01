@@ -1,11 +1,12 @@
 import React from 'react';
-import {Observable, Disposable} from 'rx';
+import {Observable, Disposable, helpers} from 'rx';
 import invariant from 'invariant';
 import assign from 'object-assign';
 
 export default class Container extends React.Component {
 	constructor(props) {
 		super(props);
+
 		this.state = {
 			status: 'pending',
 			fragments: {},
@@ -17,7 +18,6 @@ export default class Container extends React.Component {
 	fetch() {
 		const fragments = this.observe();
 
-		// FIXME: missed `fromEverything` and `wrapFragment`
 		const streams = Object.keys(fragments)
 			.map(name => {
 				const fragment = fragments[name];
@@ -76,4 +76,15 @@ export default class Container extends React.Component {
 	render() {
 		// TODO: choose correct render method
 	}
+}
+
+function fromEverything(object) {
+	if (helpers.isPromise(object)) return Observable.fromPromise(object);
+	if (helpers.isFunction(object)) return Observable.just(object);
+	// assume that `object` is Observable by default
+	return object;
+}
+
+function wrapFragment(name, value) {
+	return {[name]: value};
 }
