@@ -34,6 +34,12 @@ export default class Container extends React.Component {
 			);
 	}
 
+	refetch() {
+		this.pending();
+		this.subscription.dispose();
+		this.subscription = this.fetch();
+	}
+
 	observe() {
 		invariant(false, 'Transmitter.Container requires `observe` method to be implemented');
 	}
@@ -62,10 +68,8 @@ export default class Container extends React.Component {
 		return typeof this.shouldContainerUpdate !== 'function' || this.shouldContainerUpdate(nextProps, nextState);
 	}
 
-	componentWillReceiveProps(nextProps) {
-		this.pending();
-		this.subscription.dispose();
-		this.subscription = this.fetch();
+	componentWillReceiveProps() {
+		this.refetch();
 	}
 
 	render() {
