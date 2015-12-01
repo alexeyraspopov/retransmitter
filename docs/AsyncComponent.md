@@ -2,6 +2,8 @@
 
 ***Warning***: this API is *experimental*. Use at your own risk.
 
+## Example
+
 Here is a simple example of page which may be accessible on route `/users/:userId` and provides user info prefetched data.
 
 ```javascript
