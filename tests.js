@@ -153,9 +153,13 @@ describe('Transmitter.fromStore', () => {
 		assert.throws(() => fromStore({getState: () => null}), /Store should have subscribe method/);
 	});
 
-	// should work with addListener
-	// should return unsubscribe
-	// should start with getState() result
-	// should push updates from store
-	// should unsubscribe on dispose
+	xit('should work with addListener', () => {});
+
+	xit('should return unsubscribe', () => {});
+
+	xit('should start with getState() result', () => {});
+
+	xit('should push updates from store', () => {});
+
+	xit('should unsubscribe on dispose', () => {});
 });
