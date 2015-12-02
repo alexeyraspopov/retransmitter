@@ -1,5 +1,6 @@
 // simple async component
-Transmitter.wrap(UserInfoContainer/*, Loading*/);
+// TODO: can I use react-motion for making conditional spinner?
+Transmitter.AsyncComponent(UserInfoContainer);
 async function UserInfoContainer({userId}) {
 	const user = await User.find({id: userId});
 
@@ -19,6 +20,7 @@ class UsersListContainer extends Transmitter.Container {
 		return true;
 	}
 
+	// TODO: what strategy will be better: separate methods or `render` with switch/case?
 	renderPending() {
 		const {onAbort} = this.state;
 	}
