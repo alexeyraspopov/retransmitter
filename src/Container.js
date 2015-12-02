@@ -64,10 +64,6 @@ export default class Container extends React.Component {
 		this.subscription.dispose();
 	}
 
-	shouldComponentUpdate(nextProps, nextState) {
-		return typeof this.shouldContainerUpdate !== 'function' || this.shouldContainerUpdate(nextProps, nextState);
-	}
-
 	componentWillReceiveProps() {
 		this.refetch();
 	}

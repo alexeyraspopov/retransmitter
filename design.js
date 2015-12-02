@@ -16,10 +16,6 @@ class UsersListContainer extends Transmitter.Container {
 		};
 	}
 
-	shouldContainerUpdate() {
-		return true;
-	}
-
 	// TODO: what strategy will be better: separate methods or `render` with switch/case?
 	renderPending() {
 		const {onAbort} = this.state;
