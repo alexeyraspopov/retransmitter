@@ -1,5 +1,5 @@
 import React from 'react';
-import {Observable, Disposable, helpers} from 'rx';
+import {Observable, Disposable} from 'rx';
 import invariant from 'invariant';
 import assign from 'object-assign';
 
@@ -78,10 +78,10 @@ export default class Container extends React.Component {
 }
 
 function fromEverything(object) {
-	if (helpers.isPromise(object)) return Observable.fromPromise(object);
-	if (helpers.isFunction(object)) return Observable.just(object);
-	// assume that `object` is Observable by default
-	return object;
+	if (object instanceof Promise) return Observable.fromPromise(object);
+	if (Observable.isObservable(object)) return object;
+
+	return Observable.just(object);
 }
 
 function wrapFragment(name, value) {
