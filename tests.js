@@ -13,7 +13,7 @@ function log(target) {
 
 function runAsync(block) {
 	return new Promise((resolve, reject) => setTimeout(async () => {
-		try{
+		try {
 			resolve(await block());
 		} catch (error) {
 			reject(error);
