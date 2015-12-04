@@ -7,8 +7,7 @@ export default function fromStore(store) {
 
 	return Observable.create(observer => {
 		const pushState = () => observer.onNext(store.getState());
-		// FIXME: this breaks context
-		const unsubscribe = (store.subscribe || store.addListener)(pushState);
+		const unsubscribe = store.subscribe ? store.subscribe(pushState) : store.addListener(pushState);
 
 		invariant(typeof unsubscribe === 'function', 'Subscribe method should return a function which removes change listener when called');
 
