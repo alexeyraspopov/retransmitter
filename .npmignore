@@ -1,6 +1,7 @@
 *
 !index.js
 !lib/*.js
+!src/*.js
 !package.json
 !README.md
 !docs/
