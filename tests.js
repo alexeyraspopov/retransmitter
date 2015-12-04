@@ -12,7 +12,13 @@ function log(target) {
 }
 
 function runAsync(block) {
-	return new Promise(resolve => setTimeout(async () => resolve(await block()), 10));
+	return new Promise((resolve, reject) => setTimeout(async () => {
+		try{
+			resolve(await block());
+		} catch (error) {
+			reject(error);
+		}
+	}, 10));
 }
 
 describe('AsyncComponent', () => {
