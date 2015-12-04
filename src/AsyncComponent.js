@@ -24,10 +24,12 @@ export default function AsyncComponent(asyncFunction) {
 
 		observe(props) {
 			const result = asyncFunction(props);
+			const onSuccess = data => this.updateState(data, 'success');
+			const onFailure = error => this.updateState(error, 'failure');
 
 			invariant(result instanceof Promise, `The function ${functionName} doesn't return Promise. You probably don't need AsyncComponent in this case`);
 
-			result.then(data => this.updateState(data), error => this.updateState(error));
+			result.then(onSuccess, onFailure);
 		},
 
 		componentWillMount() {
