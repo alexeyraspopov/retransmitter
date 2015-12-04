@@ -16,14 +16,15 @@ export default function AsyncComponent(asyncFunction) {
 			return {body: React.createElement('noscript')};
 		},
 
+		getDefaultProps() {
+			return {onFetch: () => void 0};
+		},
+
 		updateState(body, status) {
 			invariant(React.isValidElement(body), `The result of ${functionName} is not a React element`);
 
 			this.setState({body});
-
-			if (this.props.onFetch) {
-				this.props.onFetch(status);
-			}
+			this.props.onFetch(status);
 		},
 
 		observe(props) {
