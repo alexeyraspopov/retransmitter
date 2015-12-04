@@ -146,6 +146,24 @@ describe('AsyncComponent', () => {
 			const Output = ReactShallow.getRenderOutput();
 
 			assert.ok(onFetch.calledWith('success'), '`onFetch` should be called with actual loading status');
+
+		});
+	});
+
+	xit('should ...', () => {
+		const ComponentFetch = async props => {
+			await Promise.reject(new Error('something'));
+			return <Component />;
+		};
+		const Container = AsyncComponent(ComponentFetch);
+		const ReactShallow = TestUtils.createRenderer();
+		const onFetch = sinon.spy();
+
+		ReactShallow.render(<Container onFetch={onFetch} />);
+
+		return runAsync(() => {
+			const Output = ReactShallow.getRenderOutput();
+			// TODO: finish this
 		});
 	});
 });
