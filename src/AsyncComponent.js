@@ -1,5 +1,5 @@
 // TODO: add spinner that will be shown after 100ms (RAIL)
-import React from 'react';
+import React, {PropTypes} from 'react';
 import invariant from 'invariant';
 
 export default function AsyncComponent(asyncFunction) {
@@ -7,6 +7,10 @@ export default function AsyncComponent(asyncFunction) {
 
 	return React.createClass({
 		displayName: `Transmitter(${functionName})`,
+
+		propTypes: {
+			onFetch: PropTypes.func,
+		},
 
 		getInitialState() {
 			return {body: React.createElement('noscript')};
