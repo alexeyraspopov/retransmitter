@@ -114,12 +114,15 @@ describe('AsyncComponent', () => {
 		assert.ok(TestUtils.isElementOfType(Output, 'noscript'), 'Not fulfilled async component should render <noscript />');
 	});
 
-	xit('should throw an error if async function result is not React element', () => {
-		const ComponentFetch = async props => await {};
+	it('should throw an error if async function result is not React element', () => {
+		const ComponentFetch = async props => {
+			await Promise.resolve(13);
+			return 1;
+		};
 		const Container = AsyncComponent(ComponentFetch);
-		const ReactShallow = TestUtils.createRenderer();
 
-		// TODO: finish this
+		// HACK: since I don't know how to catch async exception I run the method manually
+		assert.throws(() => Container.prototype.__reactAutoBindMap.updateState(1), /is not a React element/);
 	});
 
 	it('should call `onFetch` after loading is finished', () => {
