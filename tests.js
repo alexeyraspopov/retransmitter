@@ -5,6 +5,7 @@ import Transmitter from './src/Container';
 import fromStore from './src/fromStore';
 import Redux from 'redux';
 import assert from 'assert';
+import sinon from 'sinon';
 
 function log(target) {
 	console.log(require('util').inspect(target, { depth: 3, showHidden: true }));
@@ -119,6 +120,24 @@ describe('AsyncComponent', () => {
 		const ReactShallow = TestUtils.createRenderer();
 
 		// TODO: finish this
+	});
+
+	it('should call `onFetch` after loading is finished', () => {
+		const ComponentFetch = async props => {
+			const data = await Promise.resolve(13);
+			return <Component data={data} />;
+		};
+		const Container = AsyncComponent(ComponentFetch);
+		const ReactShallow = TestUtils.createRenderer();
+		const onFetch = sinon.spy();
+
+		ReactShallow.render(<Container onFetch={onFetch} />);
+
+		return runAsync(() => {
+			const Output = ReactShallow.getRenderOutput();
+
+			assert.ok(onFetch.calledWith('success'), '`onFetch` should be called with actual loading status');
+		});
 	});
 });
 
