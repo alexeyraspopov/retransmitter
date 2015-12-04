@@ -36,6 +36,6 @@ export default function AsyncComponent(asyncFunction) {
 
 		render() {
 			return this.state.body;
-		}
+		},
 	});
 }
