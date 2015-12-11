@@ -36,9 +36,9 @@
   "devDependencies": {
     "babel": "~5.8.34",
     "babel-runtime": "~5.8.34",
-    "istanbul": "~0.4.0",
-    "mocha": "~2.3.3",
-    "redux": "~3.0.4",
+    "istanbul": "~0.4.1",
+    "mocha": "~2.3.4",
+    "redux": "~3.0.5",
     "sinon": "~1.17.2"
   }
 }
