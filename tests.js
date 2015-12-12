@@ -3,7 +3,7 @@ import TestUtils from 'react/lib/ReactTestUtils';
 import AsyncComponent from './src/AsyncComponent';
 import Transmitter from './src/Container';
 import fromStore from './src/fromStore';
-import Redux from 'redux';
+import * as Redux from 'redux';
 import assert from 'assert';
 import sinon from 'sinon';
 
@@ -203,7 +203,21 @@ describe('Transmitter.fromStore', () => {
 
 	xit('should return unsubscribe', () => {});
 
-	xit('should start with getState() result', () => {});
+	it('should start with getState() result', (done) => {
+		const store = Redux.createStore((state = 13, action) => {
+			switch (action.type) {
+				case '@@redux/INIT':
+				default:
+					return state;
+			}
+		});
+		const stream = fromStore(store);
+
+		stream.subscribe(state => {
+			assert.equal(state, 13, 'Stream should start with initial state of store');
+			done();
+		});
+	});
 
 	xit('should push updates from store', () => {});
 
