@@ -206,7 +206,6 @@ describe('Transmitter.fromStore', () => {
 	it('should start with getState() result', (done) => {
 		const store = Redux.createStore((state = 13, action) => {
 			switch (action.type) {
-				case '@@redux/INIT':
 				default:
 					return state;
 			}
