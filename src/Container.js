@@ -3,7 +3,7 @@ import {Observable, Disposable} from 'rx';
 import invariant from 'invariant';
 import assign from 'object-assign';
 
-export default class Container extends React.Component {
+export default class TransmitterContainer extends React.Component {
 	constructor(props) {
 		super(props);
 
