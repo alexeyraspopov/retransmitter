@@ -36,6 +36,7 @@
   "devDependencies": {
     "babel": "~5.8.34",
     "babel-runtime": "~5.8.34",
+    "flux": "~2.1.1",
     "istanbul": "~0.4.1",
     "mocha": "~2.3.4",
     "redux": "~3.0.5",

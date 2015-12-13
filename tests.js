@@ -4,6 +4,8 @@ import AsyncComponent from './src/AsyncComponent';
 import Transmitter from './src/Container';
 import fromStore from './src/fromStore';
 import * as Redux from 'redux';
+import * as Flux from 'flux';
+import * as FluxUtils from 'flux/utils';
 import assert from 'assert';
 import sinon from 'sinon';
 
@@ -199,7 +201,23 @@ describe('Transmitter.fromStore', () => {
 		assert.throws(() => fromStore({getState: () => null}), /Store should have subscribe method/);
 	});
 
-	xit('should work with addListener', () => {});
+	it('should work with addListener (Facebook Flux)', () => {
+		class CustomStore extends FluxUtils.ReduceStore {
+			getInitialState() {
+				return 13;
+			}
+
+			reduce(state, action) {
+
+			}
+		}
+
+		const dispatcher = new Flux.Dispatcher();
+		const store = new CustomStore(dispatcher);
+		const stream = fromStore(store);
+
+		// TODO: add asserts
+	});
 
 	xit('should return unsubscribe', () => {});
 
