@@ -64,3 +64,5 @@ function UserList({users}) {
 At some level we have to get data outside of the UI, and probably from different sources. It can be Flux stores, REST API, client-side storage (Local Storage, IndexedDB, etc), any other Web API.
 
 Let's keep in mind that we should describe data requirements close to the place where they are needed.
+
+The idea behind async components is to combine async/await syntax and stateless components since both of them are using functions.
