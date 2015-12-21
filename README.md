@@ -72,6 +72,14 @@ Require the lib in your code:
 import Transmitter from 'retransmitter';
 ```
 
+Also you can require particular components:
+
+```javascript
+import AsyncComponent from 'retransmitter/lib/AsyncComponent';
+import Container from 'retransmitter/lib/Container';
+import fromStore from 'retransmitter/lib/fromStore';
+```
+
 Still using that old syntax?
 
 ```javascript
