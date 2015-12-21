@@ -1,4 +1,3 @@
-// TODO: add spinner that will be shown after 100ms (RAIL)
 import React, {PropTypes} from 'react';
 import invariant from 'invariant';
 
