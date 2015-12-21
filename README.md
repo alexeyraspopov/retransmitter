@@ -40,15 +40,15 @@ class TodosListContainer extends Container {
 		const {status, todos, query} = this.state;
 
 		switch (status) {
-			case 'SUCCESS':
-				return <TodosList todos={todos} query={query} />;
+		case 'SUCCESS':
+			return <TodosList todos={todos} query={query} />;
 
-			case 'FAILURE':
-				return <ErrorMessage />;
+		case 'FAILURE':
+			return <ErrorMessage />;
 
-			case 'PENDING':
-			default:
-				return <Spinner />;
+		case 'PENDING':
+		default:
+			return <Spinner />;
 		}
 	}
 }
