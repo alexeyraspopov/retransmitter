@@ -105,6 +105,6 @@ TBD
  - [x] Promises
  - [x] Observables
  - [x] Falcor (since it uses Promises and Observables)
- - [x] Stores (Flux, Redux) (See [`Transmitter.fromStore()`](#transmitterfromstorestore))
+ - [x] Stores (Flux, Redux)
  - [ ] CSP channels
  - [ ] Relay
