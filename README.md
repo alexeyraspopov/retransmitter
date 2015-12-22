@@ -6,7 +6,7 @@ The project is under heavy development and the API can be changed.
 
 Inspired by [Relay](https://facebook.github.io/relay). An attempt to create unified container solution.
 
-***NB***: For now Transmitter depends on [Rx](https://github.com/Reactive-Extensions/RxJS) (used as peer dependency).
+***NB***: Transmitter depends on [Rx](https://github.com/Reactive-Extensions/RxJS) (used as peer dependency).
 
 ## Quick Look
 
