@@ -148,7 +148,6 @@ describe('AsyncComponent', () => {
 			const Output = ReactShallow.getRenderOutput();
 
 			assert.ok(onFetch.calledWith('success'), '`onFetch` should be called with actual loading status');
-
 		});
 	});
 
@@ -170,7 +169,7 @@ describe('AsyncComponent', () => {
 	});
 });
 
-describe('Transmitter.Container', () => {
+describe('Container', () => {
 	class Container extends Transmitter {
 		constructor(props) {
 			super(props);
@@ -192,7 +191,7 @@ describe('Transmitter.Container', () => {
 	});
 });
 
-describe('Transmitter.fromStore', () => {
+describe('fromStore', () => {
 	it('should throws an error if store does not have getState method', () => {
 		assert.throws(() => fromStore({}), /Store should have getState method/);
 	});
