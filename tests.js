@@ -201,14 +201,17 @@ describe('Transmitter.fromStore', () => {
 		assert.throws(() => fromStore({getState: () => null}), /Store should have subscribe method/);
 	});
 
-	it('should work with addListener (Facebook Flux)', () => {
+	it('should work with addListener() (Facebook Flux)', (done) => {
 		class CustomStore extends FluxUtils.ReduceStore {
 			getInitialState() {
 				return 13;
 			}
 
 			reduce(state, action) {
-
+				switch (action.type) {
+				default:
+					return state;
+				}
 			}
 		}
 
@@ -216,16 +219,17 @@ describe('Transmitter.fromStore', () => {
 		const store = new CustomStore(dispatcher);
 		const stream = fromStore(store);
 
-		// TODO: add asserts
+		stream.subscribe(state => {
+			assert.equal(state, 13, 'Stream should start with initial state of store');
+			done();
+		});
 	});
 
-	xit('should return unsubscribe', () => {});
-
-	it('should start with getState() result', (done) => {
+	it('should work with subscribe() (Redux)', (done) => {
 		const store = Redux.createStore((state = 13, action) => {
 			switch (action.type) {
-				default:
-					return state;
+			default:
+				return state;
 			}
 		});
 		const stream = fromStore(store);

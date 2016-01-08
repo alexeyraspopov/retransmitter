@@ -7,10 +7,23 @@ export default function fromStore(store) {
 
 	return Observable.create(observer => {
 		const pushState = () => observer.onNext(store.getState());
-		const unsubscribe = store.subscribe ? store.subscribe(pushState) : store.addListener(pushState);
-
-		invariant(typeof unsubscribe === 'function', 'Subscribe method should return a function which removes change listener when called');
+		const unsubscribe = subscribe(store, pushState);
 
 		return {dispose: unsubscribe};
 	}).startWith(store.getState());
+}
+
+function subscribe(store, onNext) {
+	const disposable = store.subscribe ? store.subscribe(onNext) : store.addListener(onNext);
+
+	switch (typeof disposable) {
+	case 'function':
+		return disposable;
+	case 'object':
+		// Hello, Facebook's FluxStore
+		invariant(typeof disposable.remove === 'function', 'Subscription object should have `remove` method');
+		return disposable;
+	default:
+		invariant(false, 'Subscribe method should return a function which removes change listener when called');
+	}
 }
