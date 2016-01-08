@@ -151,7 +151,7 @@ describe('AsyncComponent', () => {
 		});
 	});
 
-	xit('should ...', () => {
+	it('should crash if reject path is unhandled', () => {
 		const ComponentFetch = async props => {
 			await Promise.reject(new Error('something'));
 			return <Component />;
@@ -164,7 +164,7 @@ describe('AsyncComponent', () => {
 
 		return runAsync(() => {
 			const Output = ReactShallow.getRenderOutput();
-			// TODO: finish this
+			assert.ok(!onFetch.called, '...');
 		});
 	});
 });
