@@ -9,7 +9,6 @@ export default class TransmitterContainer extends React.Component {
 
 		this.state = {
 			status: 'pending',
-			fragments: {},
 			error: null,
 		};
 		this.subscription = Disposable.create();
@@ -22,6 +21,9 @@ export default class TransmitterContainer extends React.Component {
 			.map(name => {
 				const fragment = fragments[name];
 				const observable = fromEverything(fragment);
+
+				invariant(name !== 'status', 'Name "status" is reserved by Transmitter. Please choose another name');
+				invariant(name !== 'error', 'Name "error" is reserved by Transmitter. Please choose another name');
 
 				return observable.map(data => wrapFragment(name, data));
 			});
@@ -45,7 +47,7 @@ export default class TransmitterContainer extends React.Component {
 	}
 
 	success(fragments) {
-		this.setState({status: 'success', fragments});
+		this.setState({status: 'success', ...fragments});
 	}
 
 	failure(error) {
