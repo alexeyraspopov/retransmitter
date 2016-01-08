@@ -47,7 +47,6 @@ class TodosListContainer extends Container {
 			return <ErrorMessage />;
 
 		case 'pending':
-		default:
 			return <Spinner />;
 		}
 	}
