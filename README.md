@@ -91,14 +91,6 @@ var Transmitter = require('retransmitter');
 npm install --save react react-dom rx
 ```
 
-## How it works
-
-Just `combineLatest` operator magic. See more [on ReactiveX.io](http://reactivex.io/documentation/operators/combinelatest.html).
-
-## API
-
-TBD
-
 ## Support
 
  - [x] Promises
