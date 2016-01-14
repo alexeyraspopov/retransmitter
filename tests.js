@@ -239,7 +239,22 @@ describe('fromStore', () => {
 		});
 	});
 
-	xit('should push updates from store', () => {});
+	it('should push updates from store', () => {
+		const store = Redux.createStore((state = 13, action) => {
+			switch (action.type) {
+			case 'incremented':
+				return state + 1;
+			default:
+				return state;
+			}
+		});
+		const stream = fromStore(store);
+		const history = [];
+
+		stream.subscribe(state => history.push(state));
+		store.dispatch({type: 'incremented'});
+		assert.deepEqual(history, [13, 14], 'Stream have to push all changes from store');
+	});
 
 	xit('should unsubscribe on dispose', () => {});
 });
