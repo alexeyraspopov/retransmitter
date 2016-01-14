@@ -47,7 +47,7 @@ export default class TransmitterContainer extends Component {
 	}
 
 	success(fragments) {
-		this.setState({status: 'success', error: null, ...fragments});
+		this.setState(assign({status: 'success', error: null}, fragments));
 	}
 
 	failure(error) {
