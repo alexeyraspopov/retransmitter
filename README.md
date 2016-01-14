@@ -87,10 +87,6 @@ var Transmitter = require('retransmitter');
 
 ***NB***: If you're NPM3 user please make sure you have [these dependencies](https://github.com/alexeyraspopov/retransmitter/blob/85b82a768725f78db3750a7916690b3b483a4e23/package.json#L33-L34) installed. I'll make these dependencies as own dependencies after NPM3 will be used widely.
 
-```bash
-npm install --save react react-dom rx
-```
-
 ## Support
 
  - [x] Promises
