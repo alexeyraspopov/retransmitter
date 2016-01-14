@@ -69,10 +69,6 @@ export default class TransmitterContainer extends Component {
 	componentWillReceiveProps() {
 		this.refetch();
 	}
-
-	render() {
-		invariant(false, 'Transmitter.Container requires `render` method to be implemented');
-	}
 }
 
 function fromEverything(object) {
