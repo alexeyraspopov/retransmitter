@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Observable, Disposable} from 'rx';
 import invariant from 'invariant';
 import assign from 'object-assign';
 
-export default class TransmitterContainer extends React.Component {
+export default class TransmitterContainer extends Component {
 	constructor(props) {
 		super(props);
 
