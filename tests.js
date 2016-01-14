@@ -275,4 +275,10 @@ describe('fromStore', () => {
 
 		assert.deepEqual(history, [13, 14], 'Stream have not receive updates after dispose');
 	});
+
+	it('should throw an error if store does not provide dispose function', () => {
+		const fakeStore = {getState() {}, subscribe() { }};
+
+		assert.throws(() => fromStore(fakeStore).subscribe(), /should return a function which removes change listener when called/);
+	});
 });
