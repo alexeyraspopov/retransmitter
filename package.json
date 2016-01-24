@@ -12,6 +12,7 @@
   "repository": "alexeyraspopov/retransmitter",
   "keywords": [
     "react",
+    "async",
     "container",
     "stateful",
     "stores",
