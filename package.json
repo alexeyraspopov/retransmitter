@@ -31,7 +31,7 @@
     "object-assign": "*"
   },
   "peerDependencies": {
-    "react": "~0.14.6",
+    "react": "~0.14.7",
     "rx": "~4.0.6"
   },
   "devDependencies": {
